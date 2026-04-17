@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "Rise_Project"
 
 FINAL_HTML = OUTPUT_DIR / "index.html"
-SOURCE_HTML = ROOT / "git_over_here.html"
+SOURCE_HTML = ROOT / "main_index.html"
 SOURCE_CSS = ROOT / "styles.css"
 SOURCE_BOOT_JS = ROOT / "head-init.js"
 SOURCE_APP_JS = ROOT / "app.js"
@@ -33,6 +33,7 @@ SOURCE_ICON_PREFIX = "./Rise_Project/resource_icons/"
 FINAL_ICON_PREFIX = "./resource_icons/"
 
 LEGACY_FILES = {
+    ROOT / "git_over_here.html": SOURCE_HTML,
     ROOT / "git_over_here_.html": SOURCE_HTML,
     ROOT / "git_over_here_course.source.html": SOURCE_HTML,
     ROOT / "git_over_here_course.css": SOURCE_CSS,
