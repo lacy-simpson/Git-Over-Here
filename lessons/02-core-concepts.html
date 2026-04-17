@@ -1,0 +1,156 @@
+<div class="lesson" id="s2">
+        <div class="lesson-header-band">
+          <div class="lh-eyebrow"><span class="lh-num">02</span><span class="time-pill">⏱ 12 min</span></div>
+          <h1 class="lh-title">Core Concepts: How Git Works</h1>
+          <p class="lh-lead">The mental model and vocabulary you need before typing a single command.</p>
+        </div>
+        <div class="lesson-body">
+          <div class="lesson-preview">
+            <span class="lp-label">What We'll Cover</span>
+            <ul class="lp-list">
+              <li>What Git is and why it matters for AI work</li>
+              <li>The 4 stages: Working Directory, Staging, Local Repo, Remote</li>
+              <li>The 3 commands that move work between stages</li>
+              <li>Key terms: commit, branch, repository</li>
+            </ul>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">About Git</h2>
+            <div class="branch-compare">
+              <div class="branch-side">
+                <span class="branch-side-label branch-side-label--good">What Is Git?</span>
+                <p>Git is a version control system. It tracks changes over time, lets you compare versions, recover earlier work, and collaborate without overwriting teammates. Long before AI coding tools existed, Git was already the foundation of how software teams work safely.</p>
+              </div>
+              <div class="branch-side">
+                <span class="branch-side-label branch-side-label--good">Why Git With AI Coding Tools?</span>
+                <p>AI tools like <strong style="color:var(--ink-strong)">Claude Code</strong> and <strong style="color:var(--ink-strong)">Codex</strong> generate and modify code fast. Without version control you can't track what changed, roll back a mistake, or safely collaborate. Git makes AI-generated code <strong style="color:var(--teal)">auditable</strong>, <strong style="color:var(--teal)">reversible</strong>, and <strong style="color:var(--teal)">team-ready</strong>.</p>
+              </div>
+            </div>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Key Terminology</h2>
+            <ul class="concept-list">
+                <li class="c-item"><div class="c-icon"><img src="./Rise_Project/resource_icons/repo_icon_ui.png" alt="" class="c-icon-img"></div><div><strong>Repository (Repo)</strong><span>A project folder tracked by Git. Contains all files AND the complete history of every change — nothing is lost.</span></div></li>
+                <li class="c-item"><div class="c-icon"><img src="./Rise_Project/resource_icons/commit_icon_ui.png" alt="" class="c-icon-img"></div><div><strong>Commit</strong><span>A labelled snapshot of staged changes. Think of it as a save point you can always return to.</span></div></li>
+                <li class="c-item"><div class="c-icon"><img src="./Rise_Project/resource_icons/branch_icon_ui.png" alt="" class="c-icon-img"></div><div><strong>Branch</strong><span>An independent line of development. Work freely on a branch without affecting the main codebase until you're ready.</span></div></li>
+                <li class="c-item"><div class="c-icon"><img src="./Rise_Project/resource_icons/remote_icon_ui.png" alt="" class="c-icon-img"></div><div><strong>Remote</strong><span>A hosted version of your repo (GitHub, GitLab). This is where you share and collaborate. <button class="learn-more-btn" data-modal="origin">What is "origin"?</button></span></div></li>
+              </ul>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Local vs. Remote</h2>
+            <table class="ctable">
+                <thead><tr><th>Local Repo</th><th>Remote Repo</th></tr></thead>
+                <tbody>
+                  <tr><td>Lives on your machine</td><td>Lives on GitHub</td></tr>
+                  <tr><td>Your day-to-day workspace</td><td>Where the team shares work</td></tr>
+                  <tr><td>Works offline</td><td>Requires internet</td></tr>
+                  <tr><td>Only you can see it until you push</td><td>Accessible to all collaborators</td></tr>
+                </tbody>
+              </table>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">4 Stages &amp; 3 Commands</h2>
+            <div class="concept-hero">
+              <span class="concept-hero-label">This diagram explains the basic Git commands you'll use today</span>
+              <div class="pipeline" aria-label="Git flow: four stages connected by three commands">
+                <ol class="pipeline-track">
+                  <li class="pipe-step">
+                    <span class="pipe-step-num">01</span>
+                    <div class="pipe-step-body">
+                      <h3 class="pipe-step-name">Working Directory</h3>
+                      <p class="pipe-step-desc">Files as you edit them. Git sees changes but isn't tracking them yet.</p>
+                    </div>
+                  </li>
+                  <li class="pipe-transition">
+                    <code class="pipe-cmd">git add</code>
+                    <span class="pipe-transition-hint">Select which changes go into your next commit</span>
+                  </li>
+                  <li class="pipe-step">
+                    <span class="pipe-step-num">02</span>
+                    <div class="pipe-step-body">
+                      <h3 class="pipe-step-name">Staging Area</h3>
+                      <p class="pipe-step-desc">Changes you've selected for the next commit. Your review queue before saving. <button class="learn-more-btn" data-modal="staging-why">Why?</button></p>
+                    </div>
+                  </li>
+                  <li class="pipe-transition">
+                    <code class="pipe-cmd">git commit</code>
+                    <span class="pipe-transition-hint">Save a labelled snapshot in your local history</span>
+                  </li>
+                  <li class="pipe-step">
+                    <span class="pipe-step-num">03</span>
+                    <div class="pipe-step-body">
+                      <h3 class="pipe-step-name">Local Repo</h3>
+                      <p class="pipe-step-desc">Committed history saved in the hidden <code class="inline-code">.git</code> folder on your machine. Works offline.</p>
+                    </div>
+                  </li>
+                  <li class="pipe-transition">
+                    <code class="pipe-cmd">git push</code>
+                    <span class="pipe-transition-hint">Send your commits to GitHub so teammates can see them</span>
+                  </li>
+                  <li class="pipe-step">
+                    <span class="pipe-step-num">04</span>
+                    <div class="pipe-step-body">
+                      <h3 class="pipe-step-name">Remote Repo</h3>
+                      <p class="pipe-step-desc">The shared copy on GitHub. Everyone on the team pushes and pulls from here.</p>
+                    </div>
+                  </li>
+                </ol>
+                <div class="pipe-reverse">
+                  <span class="pipe-reverse-icon">↺</span>
+                  <div class="pipe-reverse-body">
+                    <code class="pipe-cmd pipe-cmd-alt">git pull</code>
+                    <span class="pipe-reverse-hint">moves in the opposite direction — brings remote changes down to your local repo and working directory.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Practice Check</h2>
+            <div class="story-quiz" data-story-quiz>
+              <div class="story-quiz-actions"><button type="button" class="nav-btn story-reset">Restart</button></div>
+              <span class="story-kicker">Practice Check</span>
+              <p class="story-lead">You just created a new Claude Skill on your local machine and now you want to use Git for source control to track changes. Move through the questions below and choose the best next step as your work moves into Git.</p>
+              <div class="story-progress"><span>Your Workflow Scenario</span><div class="story-progress-side"><strong>Question <span data-story-current>1</span> of <span data-story-total>4</span></strong></div></div>
+              <div class="story-step active">
+                <div class="kc-q">You created a new skill file and you have run <code class="inline-code">git init</code> to turn the project folder into a Git repository. What is the next command you would run to move the file into the staging area?</div>
+                <ul class="kc-opts" data-correct="0">
+                  <li class="kc-opt story-opt" data-idx="0" tabindex="0" data-feedback="Correct. git add moves the file into the staging area so Git knows to include it in the next commit."><code class="inline-code">git add skill_file_name</code></li>
+                  <li class="kc-opt story-opt" data-idx="1" tabindex="0" data-feedback="Not yet. git push only works after you already have commits and a remote to send them to."><code class="inline-code">git push</code></li>
+                  <li class="kc-opt story-opt" data-idx="2" tabindex="0" data-feedback="Not yet. git commit comes after the file has been staged."><code class="inline-code">git commit</code></li>
+                  <li class="kc-opt story-opt" data-idx="3" tabindex="0" data-feedback="Not yet. git pull brings changes down from an existing remote repo. It does not stage your new local file."><code class="inline-code">git pull</code></li>
+                </ul>
+                <div class="kc-feedback" aria-live="polite"></div>
+                <div class="story-nav-row"><button type="button" class="nav-btn story-back" disabled>← Back</button><button type="button" class="nav-btn primary story-next" disabled>Next →</button></div>
+              </div>
+              <div class="story-step">
+                <div class="kc-q">You commit your changes while offline. Which stage now holds the saved snapshot?</div>
+                <ul class="kc-opts" data-correct="2">
+                  <li class="kc-opt story-opt" data-idx="0" tabindex="0" data-feedback="You still have files on your computer, but the committed snapshot lives somewhere more specific.">Working Directory</li>
+                  <li class="kc-opt story-opt" data-idx="1" tabindex="0" data-feedback="The staging area prepares changes — it's not the final saved history.">Staging Area</li>
+                  <li class="kc-opt story-opt" data-idx="2" tabindex="0" data-feedback="Correct. The commit is safely recorded in your local repo, even without internet.">Local Repo</li>
+                  <li class="kc-opt story-opt" data-idx="3" tabindex="0" data-feedback="Not yet. The remote only updates after you push.">Remote Repo</li>
+                </ul>
+                <div class="kc-feedback" aria-live="polite"></div>
+                <div class="story-nav-row"><button type="button" class="nav-btn story-back">← Back</button><button type="button" class="nav-btn primary story-next" disabled>Next →</button></div>
+              </div>
+              <div class="story-step">
+                <div class="kc-q">You want a teammate to see the latest version of the skill on GitHub. Which command sends your committed work there?</div>
+                <ul class="kc-opts" data-correct="1">
+                  <li class="kc-opt story-opt" data-idx="0" tabindex="0" data-feedback="git status only reports what Git sees. It doesn't send anything anywhere."><code class="inline-code">git status</code></li>
+                  <li class="kc-opt story-opt" data-idx="1" tabindex="0" data-feedback="Correct. git push sends your local commits to the remote so teammates can access them."><code class="inline-code">git push</code></li>
+                  <li class="kc-opt story-opt" data-idx="2" tabindex="0" data-feedback="git pull brings remote changes down to you — it doesn't publish your work."><code class="inline-code">git pull</code></li>
+                  <li class="kc-opt story-opt" data-idx="3" tabindex="0" data-feedback="git add stages changes for a commit — you've already done that step."><code class="inline-code">git add</code></li>
+                </ul>
+                <div class="kc-feedback" aria-live="polite"></div>
+                <div class="story-nav-row"><button type="button" class="nav-btn story-back">← Back</button><button type="button" class="nav-btn primary story-next" disabled>Finish →</button></div>
+              </div>
+              <div class="story-complete"><strong>Practice complete</strong><p>You initialized the project, then moved your work through Git's flow: staged → committed locally → pushed to the remote. That same progression repeats throughout the whole course.</p></div>
+            </div>
+            <div class="key-takeaway" style="margin-top:40px">
+              <span class="kt-label">Key Takeaway</span>
+              <p class="kt-text">Git has <strong>4 stages</strong> and <strong>3 commands</strong> that move your work between them. Master <code class="inline-code">git add</code>, <code class="inline-code">git commit</code>, and <code class="inline-code">git push</code> — and you have the full forward workflow.</p>
+            </div>
+          </div>
+        </div>
+      </div>

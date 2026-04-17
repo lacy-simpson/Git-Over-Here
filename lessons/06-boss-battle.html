@@ -1,0 +1,105 @@
+<div class="lesson" id="s6">
+        <div class="lesson-header-band">
+          <div class="lh-eyebrow"><span class="lh-num">07</span><span class="time-pill">⏱ 10 min</span></div>
+          <h1 class="lh-title">Useful Tips &amp; Best Practices</h1>
+          <p class="lh-lead">These are the habits and everyday commands that will save you the most time once Git becomes part of your regular workflow.</p>
+        </div>
+        <div class="lesson-body">
+          <div class="lesson-preview">
+            <span class="lp-label">What We'll Cover</span>
+            <ul class="lp-list">
+              <li>One saveable Git reference page</li>
+              <li>Everyday commands</li>
+              <li>Commit message patterns</li>
+              <li>Common mistakes and daily habits</li>
+            </ul>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Git Reference Sheet</h2>
+            <div class="reference-doc">
+              <div class="reference-doc-head">
+                <div>
+                  <span class="reference-doc-kicker">Reference Page</span>
+                  <div class="reference-doc-title">Git Quick Reference</div>
+                  <p class="reference-doc-intro">This section is designed to read like a clean internal reference page you can come back to later. Use it as your short list of commands, habits, and reminders when Git starts to feel noisy.</p>
+                </div>
+                <button class="copy-btn reference-copy-btn" data-copy='Git Quick Reference&#10;&#10;Everyday commands&#10;- git status: See what Git knows right now. Use this before and after major actions.&#10;- git log --oneline: Quickly scan recent commit history.&#10;- git branch: See which branch you are on.&#10;- git remote -v: Verify where your repo pushes and pulls.&#10;- git restore --staged filename: Unstage a file.&#10;- git checkout main: Switch back to main.&#10;- git pull origin main: Sync the latest shared version.&#10;- git push: Publish your current branch after upstream is set.&#10;&#10;Commit message pattern&#10;Rule of thumb: write it so a teammate or future-you knows what changed without opening the file. Start with an action word.&#10;Good examples: Add Slack search step to skill; Fix broken nav on mobile; Update README with setup steps; Remove unused import in app.js.&#10;Avoid: fix; stuff; asdfgh; updated file.&#10;&#10;Common mistakes to avoid&#10;- Never commit .env files, API keys, passwords, tokens, or client data.&#10;- Do not work directly on main when using a shared repository.&#10;- Do not use vague commit messages that hide what changed.&#10;- Do not push changes you did not mean to stage.&#10;- Do not skip review and merge without a pull request.&#10;&#10;Daily habits that reduce Git stress&#10;- Run git status before and after major actions.&#10;- Work on a branch instead of directly on main.&#10;- Write small, focused commits.&#10;- Pull before starting shared work.&#10;&#10;When stuck&#10;1. Run git status.&#10;2. Read exactly what Git is telling you.&#10;3. Confirm your branch with git branch.&#10;4. Pull if you need the latest shared changes.&#10;5. Ask for review before merging.'><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg>Copy Notes</button>
+              </div>
+              <div class="callout tip" style="margin-bottom:14px">
+                <span class="callout-icon">📝</span>
+                <div class="callout-body"><strong>Save this for later</strong>Copy these notes into Confluence, Notion, or your own personal cheat sheet so you have one place to revisit the most useful Git habits from this workshop. <button class="learn-more-btn" data-modal="gitignore">What is .gitignore?</button></div>
+              </div>
+              <div class="reference-block">
+                <h3>Everyday commands</h3>
+                <ul>
+                  <li><strong><code class="inline-code">git status</code></strong> tells you what Git knows right now. Use it before and after major actions.</li>
+                  <li><strong><code class="inline-code">git log --oneline</code></strong> lets you quickly scan recent commit history.</li>
+                  <li><strong><code class="inline-code">git branch</code></strong> shows which branch you are on.</li>
+                  <li><strong><code class="inline-code">git remote -v</code></strong> verifies where your repo pushes and pulls.</li>
+                  <li><strong><code class="inline-code">git restore --staged filename</code></strong> unstages a file.</li>
+                  <li><strong><code class="inline-code">git checkout main</code></strong> switches you back to <code class="inline-code">main</code>.</li>
+                  <li><strong><code class="inline-code">git pull origin main</code></strong> syncs the latest shared version.</li>
+                  <li><strong><code class="inline-code">git push</code></strong> publishes your current branch after upstream is set.</li>
+                </ul>
+              </div>
+              <div class="reference-block">
+                <h3>Commit message pattern</h3>
+                <p>Write it so a teammate or future-you knows what changed without opening the file. Start with an action word such as <em>Add</em>, <em>Fix</em>, or <em>Remove</em>.</p>
+                <div class="reference-examples">
+                  <div class="reference-example good">
+                    <div class="reference-example-title">Good examples</div>
+                    <ul>
+                      <li><code class="inline-code">Add Slack search step to skill</code></li>
+                      <li><code class="inline-code">Fix broken nav on mobile</code></li>
+                      <li><code class="inline-code">Update README with setup steps</code></li>
+                      <li><code class="inline-code">Remove unused import in app.js</code></li>
+                    </ul>
+                  </div>
+                  <div class="reference-example bad">
+                    <div class="reference-example-title">Avoid these</div>
+                    <ul>
+                      <li><code class="inline-code">fix</code></li>
+                      <li><code class="inline-code">stuff</code></li>
+                      <li><code class="inline-code">asdfgh</code></li>
+                      <li><code class="inline-code">updated file</code></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="reference-block">
+                <h3>Common mistakes to avoid</h3>
+                <ul>
+                  <li>Never commit <code class="inline-code">.env</code> files, API keys, passwords, tokens, or client data.</li>
+                  <li>Do not work directly on <code class="inline-code">main</code> when using a shared repository.</li>
+                  <li>Do not use vague commit messages that hide what changed.</li>
+                  <li>Do not push changes you did not mean to stage.</li>
+                  <li>Do not skip review and merge without a pull request.</li>
+                </ul>
+              </div>
+              <div class="reference-block">
+                <h3>Daily habits that reduce Git stress</h3>
+                <ul>
+                  <li>Run <code class="inline-code">git status</code> before and after major actions.</li>
+                  <li>Work on a branch instead of directly on <code class="inline-code">main</code>.</li>
+                  <li>Write small, focused commits.</li>
+                  <li>Pull before starting shared work.</li>
+                </ul>
+              </div>
+              <div class="reference-block">
+                <h3>When you are stuck</h3>
+                <ol>
+                  <li>Run <code class="inline-code">git status</code>.</li>
+                  <li>Read exactly what Git is telling you.</li>
+                  <li>Confirm your branch with <code class="inline-code">git branch</code>.</li>
+                  <li>Pull if you need the latest shared changes.</li>
+                  <li>Ask for review before merging.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="key-takeaway" style="margin-top:40px">
+            <span class="kt-label">Key Takeaway</span>
+            <p class="kt-text">The most useful Git reference is the one you will actually reuse. Keep a short, practical cheat sheet nearby: status, branch, pull, push, focused commits, and no secrets.</p>
+          </div>
+        </div>
+      </div>

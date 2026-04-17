@@ -1,0 +1,235 @@
+<div class="lesson" id="s3">
+        <div class="lesson-header-band">
+          <div class="lh-eyebrow"><span class="lh-num">03</span><span class="time-pill">⏱ 15 min</span></div>
+          <h1 class="lh-title">Git - Local Repo</h1>
+          <p class="lh-lead">Set up Git on your machine, start a local repository, and learn the local workflow before GitHub enters the picture.</p>
+        </div>
+        <div class="lesson-body">
+          <div class="lesson-preview">
+            <span class="lp-label">What We'll Cover</span>
+            <ul class="lp-list">
+              <li>Verify Git is installed</li>
+              <li>Configure your name and email</li>
+              <li>Run the local workflow: init → status → add → commit</li>
+              <li>Create a branch locally</li>
+            </ul>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">The Core Loop</h2>
+            <div class="card">
+              <div class="flow">
+                <div class="flow-node"><div class="flow-box">git init</div><div class="flow-desc">Start tracking</div></div>
+                <span class="flow-arr">→</span>
+                <div class="flow-node"><div class="flow-box">edit files</div><div class="flow-desc">Make changes</div></div>
+                <span class="flow-arr">→</span>
+                <div class="flow-node"><div class="flow-box">git status</div><div class="flow-desc">Review</div></div>
+                <span class="flow-arr">→</span>
+                <div class="flow-node"><div class="flow-box">git add</div><div class="flow-desc">Stage</div></div>
+                <span class="flow-arr">→</span>
+                <div class="flow-node"><div class="flow-box">git commit</div><div class="flow-desc">Save snapshot</div></div>
+              </div>
+              <p style="font-size:.85rem;color:var(--muted);margin-top:12px;line-height:1.6">In this lesson, you will work entirely on your own machine: initialize a repository, inspect its state, stage a file, save a commit, and create a branch so you can see how Git manages work locally before anything is shared to GitHub. <button class="learn-more-btn" data-modal="local-repo-basics">More on local repositories</button></p>
+            </div>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Local Setup</h2>
+            <div class="stepper">
+              <div class="st-step">
+                <div class="st-track"><div class="st-dot">1</div><div class="st-line"></div></div>
+                <div class="st-body">
+                  <h3>Verify Git Is Installed</h3>
+                  <p class="st-desc">Open your terminal and confirm Git is available on your machine.</p>
+                  <div class="code-block">
+                    <div class="code-bar"><span class="code-lang">Terminal</span><button class="copy-btn" data-copy="git --version"><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg>Copy</button></div>
+                    <div class="code-body"><code>git --version</code></div>
+                    <div class="code-output"><code># You should see: git version 2.x.x
+# Any 2.x version is fine</code></div>
+                  </div>
+                  <details class="reveal" style="margin-top:8px">
+                    <summary>Git isn't installed — open for install steps</summary>
+                    <div class="reveal-body">
+                      <div style="margin-bottom:12px">
+                        <strong style="font-size:.82rem;color:var(--teal);display:block;margin-bottom:5px">🍎 macOS</strong>
+                        <ol style="padding-left:16px;font-size:.81rem;color:var(--muted);display:grid;gap:4px;margin:0">
+                          <li>Check for Homebrew: <code class="inline-code">brew --version</code></li>
+                          <li>If needed, install Homebrew from <a href="https://brew.sh" target="_blank" rel="noreferrer">brew.sh</a></li>
+                          <li>Install Git: <code class="inline-code">brew install git</code></li>
+                          <li>Re-run <code class="inline-code">git --version</code></li>
+                        </ol>
+                      </div>
+                      <div style="margin-bottom:12px">
+                        <strong style="font-size:.82rem;color:var(--ink-strong);display:block;margin-bottom:5px">🪟 Windows</strong>
+                        <ol style="padding-left:16px;font-size:.81rem;color:var(--muted);display:grid;gap:4px;margin:0">
+                          <li>Go to <a href="https://git-scm.com/download/win" target="_blank" rel="noreferrer">git-scm.com/download/win</a></li>
+                          <li>Run the installer with the defaults</li>
+                          <li>Open Git Bash and run <code class="inline-code">git --version</code></li>
+                        </ol>
+                      </div>
+                      <div>
+                        <strong style="font-size:.82rem;color:var(--ink-strong);display:block;margin-bottom:5px">🐧 Linux</strong>
+                        <ol style="padding-left:16px;font-size:.81rem;color:var(--muted);display:grid;gap:4px;margin:0">
+                          <li>Run <code class="inline-code">sudo apt-get update && sudo apt-get install git</code></li>
+                          <li>Re-run <code class="inline-code">git --version</code></li>
+                        </ol>
+                      </div>
+                    </div>
+                  </details>
+                </div>
+              </div>
+              <div class="st-step">
+                <div class="st-track"><div class="st-dot">2</div><div class="st-line"></div></div>
+                <div class="st-body">
+                  <h3>Configure Your Identity</h3>
+                  <p class="st-desc">Git stamps your name and email on every commit. Use the same email as your GitHub account.</p>
+                  <div class="code-block">
+                    <div class="code-bar"><span class="code-lang">Terminal</span><button class="copy-btn" data-copy='git config --global user.name "Your Name"&#10;git config --global user.email "you@uipath.com"&#10;git config --list'><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg>Copy all</button></div>
+                    <div class="code-body"><code>git config --global user.name "Your Name"
+git config --global user.email "you@uipath.com"
+git config --list  <span class="dim"># verify user.name and user.email</span></code></div>
+                  </div>
+                  <div class="callout state-check" style="margin-top:10px">
+                    <span class="callout-icon">✓</span>
+                    <div class="callout-body"><strong>State Check</strong> — <code class="inline-code">git config --list</code> shows your name and email. Your local Git setup is ready.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Start a New Local Repository</h2>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">Terminal</span><button class="copy-btn" data-copy="git init my-project&#10;cd my-project"><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg>Copy</button></div>
+              <div class="code-body"><code>git init my-project
+cd my-project</code></div>
+              <div class="code-output"><code># Git creates a hidden .git folder inside my-project
+# That folder is what turns it into a repository</code></div>
+            </div>
+            <div class="callout state-check" style="margin-top:10px">
+              <span class="callout-icon">✓</span>
+              <div class="callout-body"><strong>State Check</strong> — Run <code class="inline-code">git status</code>. You should see that Git is tracking this folder even though there are no commits yet.</div>
+            </div>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Git Init vs Git Clone</h2>
+            <div class="callout tip">
+              <span class="callout-icon">📦</span>
+              <div class="callout-body"><strong>Use <code class="inline-code">git init</code> for a brand-new local project</strong> and use <code class="inline-code">git clone</code> when a repository already exists remotely and you want a copy on your machine. You will use the <code class="inline-code">git clone</code> pattern in the Boss Battle.</div>
+            </div>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Stage and Commit Locally</h2>
+            <div class="stepper">
+              <div class="st-step">
+                <div class="st-track"><div class="st-dot">1</div><div class="st-line"></div></div>
+                <div class="st-body">
+                  <h3>Check Your State</h3>
+                  <div class="code-block" style="margin-top:6px">
+                    <div class="code-bar"><span class="code-lang">Terminal</span><button class="copy-btn" data-copy="git status"><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg>Copy</button></div>
+                    <div class="code-body"><code>git status</code></div>
+                  </div>
+                  <p class="st-desc">Use <code class="inline-code">git status</code> before and after every action. It tells you exactly what Git sees.</p>
+                </div>
+              </div>
+              <div class="st-step">
+                <div class="st-track"><div class="st-dot">2</div><div class="st-line"></div></div>
+                <div class="st-body">
+                  <h3>Create a File to Track</h3>
+                  <div class="code-block" style="margin-top:6px">
+                    <div class="code-bar"><span class="code-lang">Terminal</span><button class="copy-btn" data-copy='touch praise.txt&#10;echo "Diptendu is the best" > praise.txt&#10;cat praise.txt'><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg>Copy</button></div>
+                    <div class="code-body"><code>touch praise.txt
+echo "Diptendu is the best" &gt; praise.txt
+cat praise.txt</code></div>
+                    <div class="code-output"><code># Diptendu is the best</code></div>
+                  </div>
+                  <p class="st-desc">Now Git has a real file to notice. If you run <code class="inline-code">git status</code> again, you should see <code class="inline-code">praise.txt</code> as a new untracked file.</p>
+                </div>
+              </div>
+              <div class="st-step">
+                <div class="st-track"><div class="st-dot">3</div><div class="st-line"></div></div>
+                <div class="st-body">
+                  <h3>Stage the File</h3>
+                  <div class="code-block" style="margin-top:6px">
+                    <div class="code-bar"><span class="code-lang">Terminal</span><button class="copy-btn" data-copy="git add praise.txt"><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg>Copy</button></div>
+                    <div class="code-body"><code>git add praise.txt</code></div>
+                  </div>
+                  <p class="st-desc">Staging tells Git: include this exact file in the next commit. In this example, you are staging <code class="inline-code">praise.txt</code>.</p>
+                </div>
+              </div>
+              <div class="st-step">
+                <div class="st-track"><div class="st-dot">4</div><div class="st-line"></div></div>
+                <div class="st-body">
+                  <h3>Commit the Snapshot</h3>
+                  <div class="code-block" style="margin-top:6px">
+                    <div class="code-bar"><span class="code-lang">Terminal</span><button class="copy-btn" data-copy='git commit -m "Add praise.txt"&#10;git log --oneline'><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg>Copy</button></div>
+                    <div class="code-body"><code>git commit -m "Add praise.txt"
+git log --oneline  <span class="dim"># verify your commit appears</span></code></div>
+                  </div>
+                  <div class="callout state-check" style="margin-top:8px">
+                    <span class="callout-icon">✓</span>
+                    <div class="callout-body"><strong>State Check</strong> — Your new commit appears at the top of <code class="inline-code">git log --oneline</code>. At this point your work is saved locally, even with no internet connection.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Branching</h2>
+            <p class="ls-lead">Branches are part of the local Git workflow too. You can create, switch, and work in branches entirely on your own machine before anything ever goes to GitHub.</p>
+            <figure class="branch-diagram">
+              <svg viewBox="0 0 520 140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Main branch with a side branch diverging and continuing in parallel">
+                <defs>
+                  <linearGradient id="mainLineGrad" x1="0%" x2="100%">
+                    <stop offset="0%" stop-color="#17cdbf" stop-opacity="0.22"/>
+                    <stop offset="50%" stop-color="#17cdbf" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#17cdbf" stop-opacity="0.55"/>
+                  </linearGradient>
+                  <linearGradient id="branchLineGrad" x1="0%" x2="100%">
+                    <stop offset="0%" stop-color="#ffb938" stop-opacity="0.35"/>
+                    <stop offset="100%" stop-color="#ffb938" stop-opacity="0.75"/>
+                  </linearGradient>
+                </defs>
+                <text x="16" y="34" font-family="'SF Mono', ui-monospace, monospace" font-size="11" font-weight="700" fill="#17cdbf">main</text>
+                <line x1="18" y1="52" x2="502" y2="52" stroke="url(#mainLineGrad)" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="56" cy="52" r="6" fill="#17cdbf"/>
+                <circle cx="134" cy="52" r="6" fill="#17cdbf"/>
+                <circle cx="230" cy="52" r="6" fill="#17cdbf"/>
+                <circle cx="360" cy="52" r="6" fill="#17cdbf"/>
+                <circle cx="478" cy="52" r="6" fill="#17cdbf"/>
+                <path d="M 134 52 C 170 52, 180 102, 216 102 L 450 102" fill="none" stroke="url(#branchLineGrad)" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="280" cy="102" r="6" fill="#ffb938"/>
+                <circle cx="360" cy="102" r="6" fill="#ffb938"/>
+                <circle cx="430" cy="102" r="6" fill="#ffb938"/>
+                <text x="216" y="128" font-family="'SF Mono', ui-monospace, monospace" font-size="11" font-weight="700" fill="#ffb938">your-name/my-change</text>
+              </svg>
+              <figcaption>A branch is its own line of history. <code>main</code> keeps moving; your work continues safely in parallel until you're ready to share it.</figcaption>
+            </figure>
+            <div class="branch-compare">
+              <div class="branch-side">
+                <span class="branch-side-label branch-side-label--bad">Without branches</span>
+                <p>Every experiment happens on the same line of history. Harder to isolate work, easier to lose track of what changed.</p>
+              </div>
+              <div class="branch-side">
+                <span class="branch-side-label branch-side-label--good">With branches</span>
+                <p>A safe workspace for one change, one idea, or one fix — without disturbing your main line of work.</p>
+              </div>
+            </div>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">Terminal</span><button class="copy-btn" data-copy="git checkout -b your-name/my-change&#10;git branch&#10;git checkout main"><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg>Copy</button></div>
+              <div class="code-body"><code>git checkout -b your-name/my-change  <span class="dim"># create + switch to a new branch</span>
+git branch                           <span class="dim"># list local branches</span>
+git checkout main                    <span class="dim"># switch back to main</span></code></div>
+              <div class="code-output"><code># git branch output looks like:
+#   main
+# * your-name/my-change</code></div>
+            </div>
+            <p class="branch-convention">
+              <span class="convention-label">Convention</span>
+              Name branches <code class="inline-code">your-name/description</code> so the purpose is obvious to anyone scanning the repo later.
+            </p>
+          </div>
+          <div class="key-takeaway" style="margin-top:40px">
+            <span class="kt-label">Key Takeaway</span>
+            <p class="kt-text">Your local repository is where Git starts. If you understand how to initialize, inspect, stage, commit, and branch locally, the remote workflow makes far more sense later.</p>
+          </div>
+        </div>
+      </div>

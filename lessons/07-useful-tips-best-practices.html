@@ -1,0 +1,238 @@
+<div class="lesson" id="s7">
+        <div class="lesson-header-band">
+          <div class="lh-eyebrow"><span class="lh-num">06</span><span class="time-pill">⏱ 30 min</span><span class="type-pill" style="background:var(--magenta);color:#fff">⚔ Boss Battle</span></div>
+          <h1 class="lh-title">Add Your Card to the Team Page</h1>
+          <p class="lh-lead">Every skill you've learned today — clone, branch, edit, commit, push, PR — combined into one real challenge. Your card goes live on the team page when you succeed.</p>
+        </div>
+        <div class="lesson-body">
+          <div class="lesson-preview">
+            <span class="lp-label">What You'll Do</span>
+            <ul class="lp-list">
+              <li>Clone the live team repo</li>
+              <li>Create your own branch</li>
+              <li>Add your profile card to <code style="font-size:.75rem;background:var(--surface-2);padding:1px 5px;border-radius:4px">index.html</code></li>
+              <li>Commit, push, and open a PR</li>
+              <li>See your card appear on the live page after merge</li>
+            </ul>
+          </div>
+          <div class="callout checkpoint" style="margin-top:28px">
+            <span class="callout-icon">📍</span>
+            <div class="callout-body"><strong>Check Point — Before We Split Into Rooms</strong>Give a 👍 in the chat if you have your terminal open and you're ready to clone. Your co-facilitator will meet you in your breakout room.</div>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">The Repo</h2>
+            <div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+              <div>
+                <span class="card-label">Workshop Repository</span>
+                <p style="font-size:.88rem;color:var(--muted);margin:4px 0 0">A live web app is set up and ready. Once your PR is merged, your card appears on the page for everyone to see.</p>
+              </div>
+              <a href="https://github.com/Diptendu123/git-training-demo" target="_blank" rel="noreferrer" style="flex-shrink:0;display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:var(--teal-soft);border:1px solid var(--teal-mid);border-radius:var(--r-md);font-size:.82rem;font-weight:600;color:var(--teal);text-decoration:none">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+                github.com/Diptendu123/git-training-demo
+              </a>
+            </div>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Step-by-Step Instructions</h2>
+            <div class="callout tip" style="margin-bottom:14px">
+              <span class="callout-icon">📁</span>
+              <div class="callout-body">
+                <strong>Before you clone</strong>Choose the folder where you want the project to be downloaded, then use <code class="inline-code">cd</code> to move there in your terminal. That way, Git will place the repo in a location you can easily find again later.
+                <div class="code-block" style="margin-top:10px">
+                  <div class="code-bar"><span class="code-lang">Examples</span></div>
+                  <div class="code-body"><code><span class="dim"># macOS</span>
+cd ~/Desktop
+
+<span class="dim"># Windows PowerShell</span>
+cd Desktop
+
+<span class="dim"># Another common option on either system</span>
+cd Documents</code></div>
+                </div>
+              </div>
+            </div>
+            <div class="stepper">
+              <div class="st-step">
+                <div class="st-track"><div class="st-dot">1</div><div class="st-line"></div></div>
+                <div class="st-body">
+                  <h3>Clone the repository</h3>
+                  <div class="code-block" style="margin-top:6px">
+                    <div class="code-bar"><span class="code-lang">Terminal</span><button class="copy-btn" data-copy="git clone https://github.com/Diptendu123/git-training-demo.git&#10;cd git-training-demo"><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg>Copy</button></div>
+                    <div class="code-body"><code>git clone https://github.com/Diptendu123/git-training-demo.git
+cd git-training-demo</code></div>
+                    <div class="code-output"><code># Your terminal prompt now shows: git-training-demo</code></div>
+                  </div>
+                  <div class="callout state-check" style="margin-top:8px">
+                    <span class="callout-icon">✓</span>
+                    <div class="callout-body"><strong>State Check</strong> — Run <code class="inline-code">git status</code>. You should see "nothing to commit, working tree clean."</div>
+                  </div>
+                </div>
+              </div>
+              <div class="st-step">
+                <div class="st-track"><div class="st-dot">2</div><div class="st-line"></div></div>
+                <div class="st-body">
+                  <h3>Create your branch</h3>
+                  <p class="st-desc">Use your name so the branch is easy to identify.</p>
+                  <div class="code-block" style="margin-top:6px">
+                    <div class="code-bar"><span class="code-lang">Terminal</span><button class="copy-btn" data-copy="git checkout -b add-your-name"><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg>Copy</button></div>
+                    <div class="code-body"><code>git checkout -b add-your-name  <span class="dim"># e.g. add-jane-smith</span></code></div>
+                  </div>
+                  <div class="callout state-check" style="margin-top:8px">
+                    <span class="callout-icon">✓</span>
+                    <div class="callout-body"><strong>State Check</strong> — Run <code class="inline-code">git branch</code>. An asterisk should appear next to your new branch name, not next to <code class="inline-code">main</code>.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="st-step">
+                <div class="st-track"><div class="st-dot">3</div><div class="st-line"></div></div>
+                <div class="st-body">
+                  <h3>Edit <code class="inline-code" style="font-size:.88rem">index.html</code></h3>
+                  <p class="st-desc">Open <code class="inline-code">index.html</code> in any text editor or IDE. Find this comment:</p>
+                  <div class="code-block" style="margin-top:6px">
+                    <div class="code-bar"><span class="code-lang">index.html — find this line</span></div>
+                    <div class="code-body"><code>&lt;!-- ADD YOUR CARD BELOW THIS LINE --&gt;</code></div>
+                  </div>
+                  <p class="st-desc" style="margin-top:10px">Copy the card template below and paste it <strong>after</strong> that comment. Then fill in your own details:</p>
+                  <div class="code-block" style="margin-top:6px">
+                    <div class="code-bar"><span class="code-lang">Your card — customise all five values</span><button class="copy-btn" data-copy='<div class="card">&#10;  <div class="avatar" style="background: linear-gradient(135deg, #f093fb, #f5576c);">AB</div>&#10;  <h3>Your Full Name</h3>&#10;  <div class="role">Your Job Title</div>&#10;  <div class="fun-fact">Fun fact: Something interesting about you!</div>&#10;</div>'><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg>Copy template</button></div>
+                    <div class="code-body"><code>&lt;div class="card"&gt;
+  &lt;div class="avatar" style="background: linear-gradient(135deg,
+    <span style="color:var(--magenta)">#f093fb, #f5576c</span>);"&gt;<span style="color:var(--yellow)">AB</span>&lt;/div&gt;
+  &lt;h3&gt;<span style="color:var(--teal)">Your Full Name</span>&lt;/h3&gt;
+  &lt;div class="role"&gt;<span style="color:var(--teal)">Your Job Title</span>&lt;/div&gt;
+  &lt;div class="fun-fact"&gt;Fun fact: <span style="color:var(--teal)">Something interesting about you!</span>&lt;/div&gt;
+&lt;/div&gt;</code></div>
+                  </div>
+                  <div class="card" style="margin-top:10px">
+                    <span class="card-label">Customise these 5 things</span>
+                    <div class="customize-spec">
+                      <div class="customize-item">
+                        <div class="customize-check">✓</div>
+                        <div class="customize-label">Initials</div>
+                        <div class="customize-detail">Use 2 letters in the <code class="inline-code">avatar</code> div, for example <code class="inline-code">JS</code>.</div>
+                      </div>
+                      <div class="customize-item">
+                        <div class="customize-check">✓</div>
+                        <div class="customize-label">Gradient colours</div>
+                        <div class="customize-detail">
+                          Replace <code class="inline-code">#f093fb, #f5576c</code> with any two hex colours you like.
+                          <div class="customize-note">Try one of these starter pairs if you want a quick option:</div>
+                          <div class="swatch-examples">
+                            <span class="swatch-chip"><span class="swatch-dot" style="background:#0ea5e9"></span><span class="swatch-dot" style="background:#14b8a6"></span> Blue-teal</span>
+                            <span class="swatch-chip"><span class="swatch-dot" style="background:#a855f7"></span><span class="swatch-dot" style="background:#ec4899"></span> Purple-pink</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="customize-item">
+                        <div class="customize-check">✓</div>
+                        <div class="customize-label">Name</div>
+                        <div class="customize-detail">Enter your full name.</div>
+                      </div>
+                      <div class="customize-item">
+                        <div class="customize-check">✓</div>
+                        <div class="customize-label">Role</div>
+                        <div class="customize-detail">Enter your job title.</div>
+                      </div>
+                      <div class="customize-item">
+                        <div class="customize-check">✓</div>
+                        <div class="customize-label">Fun fact</div>
+                        <div class="customize-detail">Write one short line about yourself.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="callout tip" style="margin-top:10px">
+                    <span class="callout-icon">💡</span>
+                    <div class="callout-body"><strong>Preview before you push</strong> — open <code class="inline-code">index.html</code> in your browser to see your card exactly as it will appear on the live page.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="st-step">
+                <div class="st-track"><div class="st-dot">4</div><div class="st-line"></div></div>
+                <div class="st-body">
+                  <h3>Stage and commit your changes</h3>
+                  <div class="code-block" style="margin-top:6px">
+                    <div class="code-bar"><span class="code-lang">Terminal</span><button class="copy-btn" data-copy="git add index.html&#10;git commit -m &quot;feat: add [your name] to team page&quot;"><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg>Copy</button></div>
+                    <div class="code-body"><code>git add index.html
+git commit -m "feat: add [your name] to team page"  <span class="dim"># e.g. "feat: add Jane Smith to team page"</span></code></div>
+                  </div>
+                  <div class="callout state-check" style="margin-top:8px">
+                    <span class="callout-icon">✓</span>
+                    <div class="callout-body"><strong>State Check</strong> — Run <code class="inline-code">git log --oneline</code>. Your commit should appear at the top of the list.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="st-step">
+                <div class="st-track"><div class="st-dot">5</div><div class="st-line"></div></div>
+                <div class="st-body">
+                  <h3>Push your branch</h3>
+                  <div class="code-block" style="margin-top:6px">
+                    <div class="code-bar"><span class="code-lang">Terminal</span><button class="copy-btn" data-copy="git push origin add-your-name"><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg>Copy</button></div>
+                    <div class="code-body"><code>git push origin add-your-name  <span class="dim"># match your branch name exactly</span></code></div>
+                  </div>
+                </div>
+              </div>
+              <div class="st-step">
+                <div class="st-track"><div class="st-dot">6</div><div class="st-line"></div></div>
+                <div class="st-body">
+                  <h3>Open a Pull Request on GitHub</h3>
+                  <ol style="padding-left:16px;font-size:.86rem;color:var(--muted);display:grid;gap:5px;margin:8px 0 0">
+                    <li>Go to <a href="https://github.com/Diptendu123/git-training-demo" target="_blank" rel="noreferrer" style="color:var(--teal)">github.com/Diptendu123/git-training-demo</a></li>
+                    <li>Click <strong style="color:var(--ink-strong)">"Compare &amp; pull request"</strong> — GitHub shows this automatically after you push</li>
+                    <li>Set the title to: <code class="inline-code">feat: add [your name] to team page</code></li>
+                    <li>Add a short description of your change</li>
+                    <li>Click <strong style="color:var(--ink-strong)">"Create pull request"</strong></li>
+                  </ol>
+                </div>
+              </div>
+              <div class="st-step">
+                <div class="st-track"><div class="st-dot">7</div></div>
+                <div class="st-body">
+                  <h3>Wait for review &amp; merge</h3>
+                  <p class="st-desc">Your co-facilitator will review and merge your PR. Once merged, open the live page and watch your card appear. 🎉</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Progress Checklist</h2>
+            <div class="checkpoint-list">
+              <div class="checkpoint">
+                <div class="checkpoint-head"><span class="checkpoint-n">1</span><span class="checkpoint-title">Cloned &amp; on your branch</span></div>
+                <p>Run <code class="inline-code">git branch</code> — asterisk is on your branch, not <code class="inline-code">main</code>.</p>
+                <ul>
+                  <li>Seeing "not a git repository"? You need to <code class="inline-code">cd git-training-demo</code> first.</li>
+                  <li>Still on main? Run <code class="inline-code">git checkout -b add-your-name</code> now.</li>
+                </ul>
+              </div>
+              <div class="checkpoint">
+                <div class="checkpoint-head"><span class="checkpoint-n">2</span><span class="checkpoint-title">Card added and saved</span></div>
+                <p>Run <code class="inline-code">git status</code> — <code class="inline-code">index.html</code> should appear in red under "Changes not staged."</p>
+                <ul>
+                  <li>Nothing showing? The file wasn't saved — save it and check again.</li>
+                  <li>Multiple files? Stage only <code class="inline-code">index.html</code> by name: <code class="inline-code">git add index.html</code></li>
+                </ul>
+              </div>
+              <div class="checkpoint">
+                <div class="checkpoint-head"><span class="checkpoint-n">3</span><span class="checkpoint-title">Committed and pushed</span></div>
+                <p>After commit, run <code class="inline-code">git log --oneline</code> — your commit appears at the top. After push, the branch appears on GitHub.</p>
+                <ul>
+                  <li>Push asking for credentials? Paste your PAT when prompted for a password.</li>
+                  <li>"No upstream branch" error? Run <code class="inline-code">git push origin add-your-name</code> exactly.</li>
+                </ul>
+              </div>
+              <div class="checkpoint">
+                <div class="checkpoint-head"><span class="checkpoint-n">4</span><span class="checkpoint-title">Pull request open</span></div>
+                <p>Your PR title is <code class="inline-code">feat: add [your name] to team page</code> and base branch is set to <code class="inline-code">main</code>.</p>
+                <ul>
+                  <li>Branch not visible on GitHub? Confirm the push completed without errors first.</li>
+                  <li>Banner not appearing? Go to Pull requests tab → New pull request → select your branch.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="callout activity" style="margin-top:16px">
+            <span class="callout-icon">⚡</span>
+            <div class="callout-body"><strong>Finished early? Level up.</strong>Leave a review comment on a teammate's PR — practice giving feedback. Try <code class="inline-code">git log --oneline</code> to see everyone's commits pile in. Or ask a colleague to review your PR before your co-facilitator does.</div>
+          </div>
+        </div>
+      </div>

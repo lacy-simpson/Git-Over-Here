@@ -8,7 +8,8 @@ This project is maintained in modular source files during development, then rebu
 
 ### Source files you edit
 
-- `main_index.html`: main HTML structure and lesson content
+- `main_shell.html`: the main app shell, shared page structure, and non-lesson markup
+- `lessons/01-intro.html` through `lessons/08-recap.html`: one source HTML file per lesson
 - `styles.css`: all app styling
 - `head-init.js`: small startup script that runs in the document `<head>`
 - `app.js`: application behavior and interactivity
@@ -19,9 +20,21 @@ This project is maintained in modular source files during development, then rebu
 
 ## How To Work On The App
 
-1. Edit the modular source files: `main_index.html`, `styles.css`, `head-init.js`, and `app.js`.
-2. If you want to preview the modular version locally, open `main_index.html` in a browser.
-3. When you are ready to refresh the hosted single-file output, run the rebuild script.
+1. Edit the lesson you own inside the `lessons/` folder, or edit shared files like `main_shell.html`, `styles.css`, `head-init.js`, and `app.js` when needed.
+2. Open a terminal and change into the project root:
+
+```bash
+cd "/Users/lsimpson/Dev Projects/AI UpSkilling Plan/Applications/gps-ai-practice-lab/Git-Over-Here"
+```
+
+3. Start a small local server from that folder:
+
+```bash
+python3 -m http.server 8000
+```
+
+4. Keep that terminal window running, then open `http://localhost:8000/main_shell.html` in your browser.
+5. When you are ready to update the hosted single-file output, run the rebuild script.
 
 ## Rebuild The Combined File
 
@@ -31,7 +44,7 @@ From the project root, run:
 bash scripts/update_git_over_here_course.sh
 ```
 
-This rebuilds `Rise_Project/index.html` by inlining the HTML, CSS, and JavaScript from the modular source files.
+This script rebuilds `Rise_Project/index.html` by inlining the HTML, CSS, and JavaScript from the modular source files.
 
 If you are not already in the repo folder, run:
 
@@ -56,7 +69,7 @@ This is the simplest command to use day to day. It changes into the project root
 
 This script:
 
-- treats `main_index.html`, `styles.css`, `head-init.js`, and `app.js` as the source of truth
+- treats `main_shell.html`, `lessons/*.html`, `styles.css`, `head-init.js`, and `app.js` as the source of truth
 - rebuilds `Rise_Project/index.html`
 - supports `--bootstrap` if you ever need to regenerate the modular files from the single-file HTML
 - includes a small migration step for older legacy filenames
@@ -69,13 +82,27 @@ python3 scripts/sync_git_over_here_course.py --bootstrap
 
 ## Recommended Workflow
 
-1. Make changes in the modular files.
-2. Run `bash scripts/update_git_over_here_course.sh`.
-3. Open or refresh `Rise_Project/index.html`.
-4. Confirm the changes look right before publishing or copying the combined file into the host application.
+1. Make changes in the lesson file you own under `lessons/`, or update shared files when necessary.
+2. In a terminal, change into the project root if you are not already there:
+
+```bash
+cd "/Users/lsimpson/Dev Projects/AI UpSkilling Plan/Applications/gps-ai-practice-lab/Git-Over-Here"
+```
+
+3. Start a local server if needed:
+
+```bash
+python3 -m http.server 8000
+```
+
+4. Open or refresh `http://localhost:8000/main_shell.html`.
+5. When you want to refresh the hosted deliverable, run `bash scripts/update_git_over_here_course.sh`.
+6. Confirm the changes look right before publishing or copying the combined file into the host application.
 
 ## Notes
 
 - Do not make long-term edits directly in `Rise_Project/index.html` unless you intentionally want them overwritten later.
-- The rebuild step should be run any time you change `main_index.html`, `styles.css`, `head-init.js`, or `app.js`.
+- `main_shell.html` is the local preview entry point. When served from the project root, it loads lesson content from `lessons/*.html` at runtime.
+- If you stop the Python server, `main_shell.html` will no longer load lesson content correctly until you start the server again.
+- The rebuild step should be run any time you change files in `lessons/`, `main_shell.html`, `styles.css`, `head-init.js`, or `app.js`.
 - The project also includes image assets in `Rise_Project/resource_icons/` used by the course content.

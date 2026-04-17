@@ -1,0 +1,171 @@
+<div class="lesson" id="s8">
+        <div class="lesson-header-band">
+          <div class="lh-eyebrow"><span class="lh-num">08</span><span class="time-pill">⏱ 12 min</span></div>
+          <h1 class="lh-title">Recap</h1>
+          <p class="lh-lead">The four concepts and three commands that will carry you forward — everything else you can look up.</p>
+        </div>
+        <div class="lesson-body">
+
+          <div class="lesson-preview">
+            <span class="lp-label">What We'll Review</span>
+            <ul class="lp-list">
+              <li>The 4 stages at a glance</li>
+              <li>The 3 commands to carry forward</li>
+              <li>5 rules for clean Git habits</li>
+              <li>What to explore next</li>
+            </ul>
+          </div>
+
+          <!-- The 4 Stages (mini version) -->
+          <div class="recap-section">
+            <h2 class="recap-title">The 4 Stages</h2>
+            <div class="kv-block">
+              <div class="kv-card" style="border-top:3px solid #4ade80">
+                <div class="kv-icon">✏️</div>
+                <strong class="kv-label" style="color:#4ade80">Working Directory</strong>
+                <span class="kv-desc">Where you write and edit files. Git watches but isn't saving anything yet.</span>
+              </div>
+              <div class="kv-card" style="border-top:3px solid var(--yellow)">
+                <div class="kv-icon">📋</div>
+                <strong class="kv-label" style="color:var(--yellow)">Staging Area</strong>
+                <span class="kv-desc">Your selection queue. You decide exactly what goes into the next commit — nothing more.</span>
+              </div>
+              <div class="kv-card" style="border-top:3px solid var(--teal)">
+                <div class="kv-icon">💾</div>
+                <strong class="kv-label" style="color:var(--teal)">Local Repo</strong>
+                <span class="kv-desc">The saved history on your machine. Safe, private, works without internet.</span>
+              </div>
+              <div class="kv-card" style="border-top:3px solid var(--magenta)">
+                <div class="kv-icon">☁️</div>
+                <strong class="kv-label" style="color:var(--magenta)">Remote Repo</strong>
+                <span class="kv-desc">The shared copy on GitHub. This is how your work reaches your team.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- The 3 Commands -->
+          <div class="recap-section">
+            <h2 class="recap-title">The 3 Forward Commands</h2>
+            <div class="recap-command-grid">
+              <div class="recap-cmd-card">
+                <span class="recap-cmd-code">git add</span>
+                <span class="recap-cmd-arrow">Working Directory → Staging Area</span>
+                <span class="recap-cmd-desc">"I want to include <em>this</em> change in my next commit."</span>
+              </div>
+              <div class="recap-cmd-card">
+                <span class="recap-cmd-code">git commit -m ""</span>
+                <span class="recap-cmd-arrow">Staging Area → Local Repo</span>
+                <span class="recap-cmd-desc">"Save this snapshot with a label I can find later."</span>
+              </div>
+              <div class="recap-cmd-card">
+                <span class="recap-cmd-code">git push</span>
+                <span class="recap-cmd-arrow">Local Repo → Remote Repo</span>
+                <span class="recap-cmd-desc">"Send my commits to GitHub so the team can see them."</span>
+              </div>
+            </div>
+            <div class="card" style="margin-top:10px;display:flex;align-items:center;gap:12px;padding:14px 16px">
+              <span style="font-size:1.4rem">⬇️</span>
+              <div>
+                <strong style="font-size:.88rem;color:var(--ink-strong);display:block;margin-bottom:2px">git pull</strong>
+                <span style="font-size:.8rem;color:var(--muted)">Brings remote changes down to your local repo and working directory. Run this before starting new work.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5 Rules to Live By -->
+          <div class="recap-section">
+            <h2 class="recap-title">5 Rules to Live By</h2>
+            <div class="recap-rules-grid">
+              <div class="recap-rule">
+                <div class="recap-rule-n">1</div>
+                <div class="recap-rule-body">
+                  <strong>Commit often, commit small</strong>
+                  <span>One meaningful change per commit. Easier to review, easier to undo if something breaks.</span>
+                </div>
+              </div>
+              <div class="recap-rule">
+                <div class="recap-rule-n">2</div>
+                <div class="recap-rule-body">
+                  <strong>Write commit messages a stranger can understand</strong>
+                  <span>"Fix null reference in auth handler" beats "stuff" every time. Future-you is that stranger.</span>
+                </div>
+              </div>
+              <div class="recap-rule">
+                <div class="recap-rule-n">3</div>
+                <div class="recap-rule-body">
+                  <strong>Always work on a branch, never directly on main</strong>
+                  <span>A branch is a safe sandbox. Main should always contain working, reviewed code.</span>
+                </div>
+              </div>
+              <div class="recap-rule">
+                <div class="recap-rule-n">4</div>
+                <div class="recap-rule-body">
+                  <strong>Pull before you push</strong>
+                  <span>Sync the latest remote changes first. Prevents merge conflicts and saves everyone headaches.</span>
+                </div>
+              </div>
+              <div class="recap-rule">
+                <div class="recap-rule-n">5</div>
+                <div class="recap-rule-body">
+                  <strong>Use <code class="inline-code">git status</code> constantly</strong>
+                  <span>It tells you exactly where you are, what's staged, and what's not. When in doubt — run it.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- What's Next -->
+          <div class="recap-section">
+            <h2 class="recap-title">What's Next</h2>
+            <div class="next-steps-grid">
+              <div class="next-step-card">
+                <strong>Put a real project under Git this week</strong>
+                <span style="font-size:.8rem;color:var(--muted);line-height:1.5">Even a folder of scripts counts. Run <code class="inline-code">git init</code>, make your first commit, and the workflow will start to feel natural fast.</span>
+              </div>
+              <div class="next-step-card">
+                <strong>Check the live team page</strong>
+                <span style="font-size:.8rem;color:var(--muted);line-height:1.5">If your PR was merged, open <a href="https://github.com/Diptendu123/git-training-demo" target="_blank" rel="noreferrer" style="color:var(--teal)">the repo</a> and find the live page — your card should be there. If it's still open, leave a comment on a teammate's PR while you wait.</span>
+              </div>
+              <div class="next-step-card">
+                <strong>Explore branching strategies</strong>
+                <span style="font-size:.8rem;color:var(--muted);line-height:1.5">Feature branches, Gitflow, trunk-based development — the next level of collaboration. Ask your facilitator for a reading list.</span>
+              </div>
+              <div class="next-step-card">
+                <strong>Learn to resolve merge conflicts</strong>
+                <span style="font-size:.8rem;color:var(--muted);line-height:1.5">They sound scary, but once you've resolved one or two you'll see they're just a text edit with markers. It's a solvable problem, not a disaster.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="key-takeaway" style="margin-top:40px">
+            <span class="kt-label">The Point of All of This</span>
+            <p class="kt-text">You don't need to memorize every flag or option. You need to understand the <strong>mental model</strong> well enough to know what you're trying to do — then look up the exact syntax when you need it.</p>
+          </div>
+
+          <!-- Closing reflection -->
+          <div class="callout activity" style="margin-top:16px">
+            <span class="callout-icon">💬</span>
+            <div class="callout-body">
+              <strong>Before we close — one question for the room:</strong>
+              <p style="margin:6px 0 0;font-size:.88rem">What is <em>one tip, trick, or bit of info</em> that you learned today that you are ready to start trying in your own workflow? Drop it in the chat.</p>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <footer class="bottombar">
+      <button class="nav-btn" id="prevBtn" disabled>← Prev</button>
+      <div class="section-mid"><div class="mid-label">Current Section</div><div class="mid-name" id="secName">Intro</div></div>
+      <button class="nav-btn primary" id="nextBtn">Next →</button>
+    </footer>
+  </div>
+</div>
+
+<!-- ── MODAL OVERLAY ──────────────────────────────────────── -->
+<div id="modalOverlay" class="modal-overlay">
+  <div class="modal-box" id="modalBox"></div>
+</div>
+
+<!-- ── MODAL DEFINITIONS (hidden) ────────────────────────── -->

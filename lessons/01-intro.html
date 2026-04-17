@@ -1,0 +1,139 @@
+<div class="lesson active" id="s1">
+        <div class="lesson-header-band">
+          <div class="lh-eyebrow"><span class="lh-num">01</span><span class="time-pill">⏱ 5 min</span><span class="type-pill">Intro</span></div>
+          <h1 class="lh-title">Intro</h1>
+          <p class="lh-lead">What to expect from this course.</p>
+        </div>
+        <div class="lesson-body">
+          <div class="ls">
+            <h2 class="ls-title">What You'll Learn</h2>
+            <ul class="obj-list">
+                <li class="obj-item"><span class="obj-n">1</span><span><strong>Review</strong> what Git is and why it's useful</span></li>
+                <li class="obj-item"><span class="obj-n">2</span><span><strong>Set up</strong> Git and GitHub and verify your configuration</span></li>
+                <li class="obj-item"><span class="obj-n">3</span><span><strong>Run</strong> the basic Git workflow: status → add → commit → push</span></li>
+                <li class="obj-item"><span class="obj-n">4</span><span><strong>Create and use</strong> a branch so your work doesn't affect shared <code class="inline-code">main</code></span></li>
+                <li class="obj-item"><span class="obj-n">5</span><span><strong>Open a pull request</strong> so a teammate can review your work before merge</span></li>
+                <li class="obj-item"><span class="obj-n">6</span><span><strong>Review</strong> best practices and mistakes to avoid</span></li>
+              </ul>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">What This Course Is Not</h2>
+            <p style="font-size:.9rem;color:var(--muted);line-height:1.7;margin-bottom:12px">This workshop is not intended to be a deep dive into the full breadth of Git. There are many excellent resources available if you want to build a stronger long-term foundation and go deeper into Git concepts, workflows, and edge cases.</p>
+              <p style="font-size:.9rem;color:var(--muted);line-height:1.7">This course is intentionally practical. The goal is to give you a quick overview of the basic functionality you need most, then help you use Git in a real application so the workflow feels useful and approachable right away. <button class="learn-more-btn" data-modal="gps-learning-path">Want to learn more Git?</button></p>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Why This Course Matters</h2>
+            <p style="font-size:.9rem;color:var(--muted);line-height:1.7;margin-bottom:12px">If you plan to work with <strong style="color:var(--ink-strong)">Claude Code</strong>, <strong style="color:var(--ink-strong)">Codex</strong>, or any other AI coding tool, Git is not optional background knowledge anymore. It is the skill that lets you safely review what the tool changed, save your progress, roll back mistakes, and share work with confidence instead of crossing your fingers.</p>
+              <p style="font-size:.9rem;color:var(--muted);line-height:1.7;margin-bottom:12px">For GPS, this becomes even more real. If you want to contribute to agents, skills, prompts, or other shared projects, Git is part of the job. It is how you show your work clearly, collaborate without stepping on someone else's changes, and participate in the same workflow the rest of the team will expect.</p>
+              <p style="font-size:.9rem;color:var(--muted);line-height:1.7">If you have ever thought, "I can probably get by without learning this part," this is the part that will eventually slow you down. The good news is that you do not need to master all of Git today. You just need enough of it to start working confidently in real situations, and that is exactly what this course is designed to help you do.</p>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Session Format</h2>
+            <ul class="check-list">
+                <li>Core concepts are presented and discussed</li>
+                <li>Facilitator explains and demos live — you follow along in your own terminal</li>
+                <li>Boss Battle — practice everything that you learned in a final project</li>
+              </ul>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Before We Start</h2>
+            <div class="card">
+              <span class="card-label">Pre-Reqs for Hands On</span>
+              <p style="font-size:.9rem;color:var(--muted);line-height:1.65;margin-bottom:12px">If you would like to participate in the hands on activities <i>(we strongly recommend that you do)</i>, you will need to have these steps compelte before Lesson 3.</p>
+              <div class="interactive-checklist">
+                <label class="task-check">
+                  <input type="checkbox">
+                  <span>A terminal window is open on your machine and ready for you to type commands</span>
+                </label>
+              </div>
+              <details class="reveal" style="margin-top:12px">
+                <summary>🖥️ New to the terminal? Open this first.</summary>
+                <div class="reveal-body">
+                  <strong>What is the terminal?</strong> A text-based window where you type commands instead of clicking buttons. Think of it as a faster way to navigate your computer.<br><br>
+                  <strong>How to open it:</strong><br>
+                  Mac: Press Cmd+Space, type "Terminal," press Enter.<br>
+                  Windows: Press the Windows key, type "cmd" or "PowerShell," press Enter.<br><br>
+                  <strong>What you'll see:</strong> A blinking cursor waiting for you to type. That's normal.<br><br>
+                  <strong>Key commands to know:</strong><br>
+                  <code class="inline-code">pwd</code> — shows your current folder location (Mac/Linux)<br>
+                  <code class="inline-code">cd folder-name</code> — moves into a folder <button class="learn-more-btn" data-modal="cd">What is cd?</button><br>
+                  <code class="inline-code">cd ..</code> — moves up one folder level
+                </div>
+              </details>
+              <div class="interactive-checklist" style="margin-top:12px">
+                <label class="task-check">
+                  <input type="checkbox">
+                  <span>Git is installed and <code class="inline-code">git --version</code> returns a version number in your terminal</span>
+                </label>
+              </div>
+              <details class="reveal" style="margin-top:12px">
+                <summary>Haven't installed Git yet? Open this.</summary>
+                <div class="reveal-body">
+                  <strong style="font-size:.85rem;color:var(--ink-strong);display:block;margin-bottom:10px">Pick your operating system and follow the steps in order:</strong>
+                  <div style="margin-bottom:14px">
+                    <strong style="font-size:.82rem;color:var(--teal);display:block;margin-bottom:6px">🍎 macOS</strong>
+                    <ol style="padding-left:16px;font-size:.81rem;color:var(--muted);display:grid;gap:5px;margin:0">
+                      <li>Open Terminal — press <strong>Cmd+Space</strong>, type "Terminal," press Enter</li>
+                      <li>Check if Homebrew is installed: <code class="inline-code">brew --version</code><br>
+                          If you see "command not found," install Homebrew first: go to <a href="https://brew.sh" target="_blank" rel="noreferrer">brew.sh</a>, copy the install command on that page, paste it into your terminal, and press Enter. Wait for it to finish.</li>
+                      <li>Install Git: <code class="inline-code">brew install git</code></li>
+                      <li>Verify: <code class="inline-code">git --version</code> — you should see a version number like <code class="inline-code">git version 2.x.x</code></li>
+                    </ol>
+                  </div>
+                  <div style="margin-bottom:14px">
+                    <strong style="font-size:.82rem;color:var(--ink-strong);display:block;margin-bottom:6px">🪟 Windows</strong>
+                    <ol style="padding-left:16px;font-size:.81rem;color:var(--muted);display:grid;gap:5px;margin:0">
+                      <li>Go to <a href="https://git-scm.com/download/win" target="_blank" rel="noreferrer">git-scm.com/download/win</a> — the installer downloads automatically</li>
+                      <li>Run the installer and keep all default settings — click Next through each screen</li>
+                      <li>When the install finishes, open <strong>Git Bash</strong> (search for it in the Start menu) or open Command Prompt</li>
+                      <li>Verify: <code class="inline-code">git --version</code> — you should see a version number</li>
+                    </ol>
+                  </div>
+                  <div>
+                    <strong style="font-size:.82rem;color:var(--ink-strong);display:block;margin-bottom:6px">🐧 Linux (Ubuntu / Debian)</strong>
+                    <ol style="padding-left:16px;font-size:.81rem;color:var(--muted);display:grid;gap:5px;margin:0">
+                      <li>Open Terminal</li>
+                      <li>Run: <code class="inline-code">sudo apt-get update && sudo apt-get install git</code> — enter your password when prompted</li>
+                      <li>Verify: <code class="inline-code">git --version</code> — you should see a version number</li>
+                    </ol>
+                  </div>
+                </div>
+              </details>
+              <div class="interactive-checklist" style="margin-top:12px">
+                <label class="task-check">
+                  <input type="checkbox">
+                  <span>A GitHub account has been created and verified for this workshop</span>
+                </label>
+              </div>
+              <details class="reveal" style="margin-top:12px">
+                <summary>Need to create your GitHub account? Open this.</summary>
+                <div class="reveal-body">
+                  <p>Go to <a href="https://github.com" target="_blank" rel="noreferrer">github.com</a> and sign in or sign up. If you are signing up, use your <code class="inline-code">uipath.com</code> email if you don't already have an account.</p>
+                  <ul style="list-style:none;display:grid;gap:5px;margin-top:10px">
+                    <li>Choose a professional username because you'll share it with teammates</li>
+                    <li>Verify your email address before continuing</li>
+                    <li>This creates a standard GitHub account, not an enterprise license</li>
+                  </ul>
+                  <div style="margin-top:10px;padding:10px 12px;background:var(--amber-soft);border:1px solid rgba(255,185,56,.22);border-radius:8px">
+                    <strong style="display:block;font-size:.8rem;color:var(--amber);margin-bottom:4px">Important security note</strong>
+                    <span style="font-size:.8rem;line-height:1.55;color:var(--muted)">A standard GitHub account does not give you enterprise protections or approval to store sensitive information. Treat workshop and public-safe practice repos as non-sensitive spaces only: no client data, passwords, tokens, or real <code class="inline-code">.env</code> files.</span>
+                  </div>
+                  <details class="reveal" style="margin-top:10px">
+                    <summary>Standard account vs. GitHub Enterprise</summary>
+                    <div class="reveal-body">
+                      <div class="kv-block">
+                        <div class="kv-side teal"><strong>👤 Standard GitHub (you create today)</strong><ul><li>Free to create yourself</li><li>Good for this workshop and practice repos</li><li>Does not include enterprise access</li></ul></div>
+                        <div class="kv-side amber"><strong>🏢 GitHub Enterprise</strong><ul><li>Allocated separately by the org</li><li>Required for internal private repos</li><li>Not currently available to everyone</li></ul></div>
+                      </div>
+                    </div>
+                  </details>
+                </div>
+              </details>
+            </div>
+            <div class="callout checkpoint" style="margin-top:28px">
+              <span class="callout-icon">📍</span>
+              <div class="callout-body"><strong>Check Point</strong>Give a 👍 in the chat once your terminal is open, Git is installed, and your GitHub account is ready. If anything is blocking you, open the guidance above and raise your hand ✋ - we'll help get you sorted.</div>
+            </div>
+          </div>
+        </div>
+      </div>

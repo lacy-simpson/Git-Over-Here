@@ -2013,38 +2013,39 @@ html[data-theme='light'] .lp-list li::before{color:var(--teal-deep)}
         <div class="sb-mark"><div class="sb-mark-dots"><div class="sb-mark-dot t"></div><div class="sb-mark-dot a"></div><div class="sb-mark-dot l"></div></div></div>
         <div><div class="sb-name">Git Over Here</div><div class="sb-sub">GPS AI Practice Lab</div></div>
       </div>
-      <button class="sb-close" onclick="toggleSidebar()" title="Close menu"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M.7.7 9.3 9.3M9.3.7.7 9.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+      <button class="sb-close" id="sbCloseBtn" title="Close menu"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M.7.7 9.3 9.3M9.3.7.7 9.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
     </div>
     <nav class="sb-nav" id="sbNav">
-      <button class="sb-item active" data-idx="0" onclick="goTo(0)"><span class="sb-num">01</span><div class="sb-item-body"><span class="sb-item-title">Intro</span><span class="sb-item-meta">5 min · Welcome</span></div></button>
-      <button class="sb-item" data-idx="1" onclick="goTo(1)"><span class="sb-num">02</span><div class="sb-item-body"><span class="sb-item-title">Core Concepts</span><span class="sb-item-meta">12 min · 4 Stages, 3 Commands</span></div></button>
-      <button class="sb-item" data-idx="2" onclick="goTo(2)"><span class="sb-num">03</span><div class="sb-item-body"><span class="sb-item-title">Git - Local Repo</span><span class="sb-item-meta">15 min · Local setup &amp; branching</span></div></button>
-      <button class="sb-item" data-idx="3" onclick="goTo(3)"><span class="sb-num">04</span><div class="sb-item-body"><span class="sb-item-title">Git - Remote Repo</span><span class="sb-item-meta">20 min · Connect, push, pull</span></div></button>
-      <button class="sb-item" data-idx="4" onclick="goTo(4)"><span class="sb-num">05</span><div class="sb-item-body"><span class="sb-item-title">Git Collaboration</span><span class="sb-item-meta">12 min · PRs, merge, conflicts</span></div></button>
-      <button class="sb-item" data-idx="5" onclick="goTo(5)"><span class="sb-num">06</span><div class="sb-item-body"><span class="sb-item-title">Boss Battle</span><span class="sb-item-meta">30 min · Add Your Card to the Team Page</span></div></button>
-      <button class="sb-item" data-idx="6" onclick="goTo(6)"><span class="sb-num">07</span><div class="sb-item-body"><span class="sb-item-title">Useful Tips &amp; Best Practices</span><span class="sb-item-meta">10 min · Everyday commands</span></div></button>
-      <button class="sb-item" data-idx="7" onclick="goTo(7)"><span class="sb-num">08</span><div class="sb-item-body"><span class="sb-item-title">Recap</span><span class="sb-item-meta">12 min · Recap</span></div></button>
+      <button class="sb-item active" data-idx="0"><span class="sb-num">01</span><div class="sb-item-body"><span class="sb-item-title">Intro</span><span class="sb-item-meta">5 min · Welcome</span></div></button>
+      <button class="sb-item" data-idx="1"><span class="sb-num">02</span><div class="sb-item-body"><span class="sb-item-title">Core Concepts</span><span class="sb-item-meta">12 min · 4 Stages, 3 Commands</span></div></button>
+      <button class="sb-item" data-idx="2"><span class="sb-num">03</span><div class="sb-item-body"><span class="sb-item-title">Git - Local Repo</span><span class="sb-item-meta">15 min · Local setup &amp; branching</span></div></button>
+      <button class="sb-item" data-idx="3"><span class="sb-num">04</span><div class="sb-item-body"><span class="sb-item-title">Git - Remote Repo</span><span class="sb-item-meta">20 min · Connect, push, pull</span></div></button>
+      <button class="sb-item" data-idx="4"><span class="sb-num">05</span><div class="sb-item-body"><span class="sb-item-title">Git Collaboration</span><span class="sb-item-meta">12 min · PRs, merge, conflicts</span></div></button>
+      <button class="sb-item" data-idx="5"><span class="sb-num">06</span><div class="sb-item-body"><span class="sb-item-title">Boss Battle</span><span class="sb-item-meta">30 min · Add Your Card to the Team Page</span></div></button>
+      <button class="sb-item" data-idx="6"><span class="sb-num">07</span><div class="sb-item-body"><span class="sb-item-title">Useful Tips &amp; Best Practices</span><span class="sb-item-meta">10 min · Everyday commands</span></div></button>
+      <button class="sb-item" data-idx="7"><span class="sb-num">08</span><div class="sb-item-body"><span class="sb-item-title">Recap</span><span class="sb-item-meta">12 min · Recap</span></div></button>
     </nav>
     <div class="sb-foot"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3.5l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>~90 min · live workshop</div>
   </aside>
-  <div class="sb-backdrop" id="sbBackdrop" onclick="closeSidebar()"></div>
+  <div class="sb-backdrop" id="sbBackdrop"></div>
   <div class="main">
     <header class="topbar">
-      <button class="tb-toggle" onclick="toggleSidebar()" title="Toggle navigation"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.5h14M1 8h14M1 13.5h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+      <button class="tb-toggle" id="tbToggleBtn" title="Toggle navigation"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.5h14M1 8h14M1 13.5h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
       <div class="progress-rail"><div class="progress-bar" id="pBar" style="width:12.5%"></div></div>
       <span class="tb-count" id="pCount">1 / 8</span>
       <div class="tb-sep"></div>
       <div class="timer">
         <span class="timer-time" id="timerEl">10:00</span>
-        <button class="tcb play" id="playBtn" onclick="toggleTimer()" title="Play / Pause"><svg id="playIcon" width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.5l8 4.5-8 4.5V3.5z"/></svg></button>
-        <button class="tcb reset" onclick="resetTimer()" title="Reset timer"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg></button>
+        <button class="tcb play" id="playBtn" title="Play / Pause"><svg id="playIcon" width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.5l8 4.5-8 4.5V3.5z"/></svg></button>
+        <button class="tcb reset" id="resetTimerBtn" title="Reset timer"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg></button>
       </div>
       <div class="tb-session"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3.5l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span id="sessionEl">0:00 / ~90 min</span></div>
-      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme"><svg id="themeIcon" width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/></svg></button>
+      <button class="theme-btn" id="themeToggleBtn" title="Toggle theme"><svg id="themeIcon" width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/></svg></button>
     </header>
     <div class="content" id="viewport">
       <!-- LESSONS INJECTED BELOW -->
-      <div class="lesson active" id="s1">
+            <!-- LESSONS START: generated from lessons/*.html -->
+<div class="lesson active" id="s1">
         <div class="lesson-header-band">
           <div class="lh-eyebrow"><span class="lh-num">01</span><span class="time-pill">⏱ 5 min</span><span class="type-pill">Intro</span></div>
           <h1 class="lh-title">Intro</h1>
@@ -2183,7 +2184,8 @@ html[data-theme='light'] .lp-list li::before{color:var(--teal-deep)}
           </div>
         </div>
       </div>
-      <div class="lesson" id="s2">
+
+<div class="lesson" id="s2">
         <div class="lesson-header-band">
           <div class="lh-eyebrow"><span class="lh-num">02</span><span class="time-pill">⏱ 12 min</span></div>
           <h1 class="lh-title">Core Concepts: How Git Works</h1>
@@ -2339,7 +2341,8 @@ html[data-theme='light'] .lp-list li::before{color:var(--teal-deep)}
           </div>
         </div>
       </div>
-      <div class="lesson" id="s3">
+
+<div class="lesson" id="s3">
         <div class="lesson-header-band">
           <div class="lh-eyebrow"><span class="lh-num">03</span><span class="time-pill">⏱ 15 min</span></div>
           <h1 class="lh-title">Git - Local Repo</h1>
@@ -2574,7 +2577,8 @@ git checkout main                    <span class="dim"># switch back to main</sp
           </div>
         </div>
       </div>
-      <div class="lesson" id="s4">
+
+<div class="lesson" id="s4">
         <div class="lesson-header-band">
           <div class="lh-eyebrow"><span class="lh-num">04</span><span class="time-pill">⏱ 20 min</span></div>
           <h1 class="lh-title">Git - Remote Repo</h1>
@@ -2671,7 +2675,8 @@ git remote -v</code></div>
           </div>
         </div>
       </div>
-      <div class="lesson" id="s5">
+
+<div class="lesson" id="s5">
         <div class="lesson-header-band">
           <div class="lh-eyebrow"><span class="lh-num">05</span><span class="time-pill">⏱ 12 min</span></div>
           <h1 class="lh-title">Git Collaboration</h1>
@@ -2823,7 +2828,8 @@ prompt: "Identify top 5 trends and root causes"
           </div>
         </div>
       </div>
-      <div class="lesson" id="s6">
+
+<div class="lesson" id="s6">
         <div class="lesson-header-band">
           <div class="lh-eyebrow"><span class="lh-num">07</span><span class="time-pill">⏱ 10 min</span></div>
           <h1 class="lh-title">Useful Tips &amp; Best Practices</h1>
@@ -2928,7 +2934,8 @@ prompt: "Identify top 5 trends and root causes"
           </div>
         </div>
       </div>
-      <div class="lesson" id="s7">
+
+<div class="lesson" id="s7">
         <div class="lesson-header-band">
           <div class="lh-eyebrow"><span class="lh-num">06</span><span class="time-pill">⏱ 30 min</span><span class="type-pill" style="background:var(--magenta);color:#fff">⚔ Boss Battle</span></div>
           <h1 class="lh-title">Add Your Card to the Team Page</h1>
@@ -3166,7 +3173,8 @@ git commit -m "feat: add [your name] to team page"  <span class="dim"># e.g. "fe
           </div>
         </div>
       </div>
-      <div class="lesson" id="s8">
+
+<div class="lesson" id="s8">
         <div class="lesson-header-band">
           <div class="lh-eyebrow"><span class="lh-num">08</span><span class="time-pill">⏱ 12 min</span></div>
           <h1 class="lh-title">Recap</h1>
@@ -3324,19 +3332,20 @@ git commit -m "feat: add [your name] to team page"  <span class="dim"># e.g. "fe
       </div>
     </div>
     <footer class="bottombar">
-      <button class="nav-btn" id="prevBtn" onclick="go(-1)" disabled>← Prev</button>
+      <button class="nav-btn" id="prevBtn" disabled>← Prev</button>
       <div class="section-mid"><div class="mid-label">Current Section</div><div class="mid-name" id="secName">Intro</div></div>
-      <button class="nav-btn primary" id="nextBtn" onclick="go(1)">Next →</button>
+      <button class="nav-btn primary" id="nextBtn">Next →</button>
     </footer>
   </div>
 </div>
 
 <!-- ── MODAL OVERLAY ──────────────────────────────────────── -->
-<div id="modalOverlay" class="modal-overlay" onclick="handleModalClick(event)">
+<div id="modalOverlay" class="modal-overlay">
   <div class="modal-box" id="modalBox"></div>
 </div>
 
 <!-- ── MODAL DEFINITIONS (hidden) ────────────────────────── -->
+      <!-- LESSONS END: generated from lessons/*.html -->
 <div id="modal-defs" hidden>
   <div id="modal-origin">
     <div class="modal-title">What does "origin" mean?</div>
@@ -3451,8 +3460,49 @@ const SECTIONS=[
   {title:"Recap",min:12},
 ];
 const LESSON_ORDER=['s1','s2','s3','s4','s5','s7','s6','s8'];
+const LESSON_FILES=[
+  'lessons/01-intro.html',
+  'lessons/02-core-concepts.html',
+  'lessons/03-local-repo.html',
+  'lessons/04-remote-repo.html',
+  'lessons/05-git-collaboration.html',
+  'lessons/06-boss-battle.html',
+  'lessons/07-useful-tips-best-practices.html',
+  'lessons/08-recap.html',
+];
 const WORKSHOP_TOTAL_LABEL='~90 min';
 let cur=0,secs=SECTIONS[0].min*60,running=false,tInterval=null,sessionElapsed=0;
+
+async function loadLessonsIfNeeded(){
+  if(document.querySelector('.lesson'))return;
+
+  const modalDefs=document.getElementById('modal-defs');
+  const viewport=document.getElementById('viewport');
+  if(!viewport)return;
+
+  try{
+    const lessons=await Promise.all(
+      LESSON_FILES.map(path=>
+        fetch(path).then(res=>{
+          if(!res.ok)throw new Error(`Failed to load ${path}`);
+          return res.text();
+        })
+      )
+    );
+    const markup=lessons.join('\n\n');
+    if(modalDefs){
+      modalDefs.insertAdjacentHTML('beforebegin',markup+'\n');
+    }else{
+      viewport.insertAdjacentHTML('beforeend',markup+'\n');
+    }
+  }catch(error){
+    viewport.insertAdjacentHTML(
+      'afterbegin',
+      '<div class="callout warn" style="margin:24px"><span class="callout-icon">!</span><div class="callout-body"><strong>Lesson content failed to load.</strong> Start the local server from the project root with <code>python3 -m http.server 8000</code>, then open <code>http://localhost:8000/main_shell.html</code> in your browser.</div></div>'
+    );
+    throw error;
+  }
+}
 
 function goTo(idx){
   if(idx<0||idx>=SECTIONS.length)return;
@@ -3465,6 +3515,8 @@ function goTo(idx){
   if(window.innerWidth<900)closeSidebar();
 }
 function go(dir){goTo(cur+dir)}
+window.goTo=goTo;
+window.go=go;
 function syncUI(){
   const n=SECTIONS.length;
   document.getElementById('pBar').style.width=((cur+1)/n*100)+'%';
@@ -3519,6 +3571,8 @@ function toggleTimer(){
     startTimer();
   }
 }
+window.toggleTimer=toggleTimer;
+window.resetTimer=resetTimer;
 function renderTimer(){
   const m=Math.floor(secs/60),s=secs%60;
   const el=document.getElementById('timerEl');
@@ -3543,6 +3597,9 @@ function toggleTheme(){
   document.documentElement.setAttribute('data-theme',t);
   localStorage.setItem('git-guide-theme',t);
 }
+window.toggleSidebar=toggleSidebar;
+window.closeSidebar=closeSidebar;
+window.toggleTheme=toggleTheme;
 
 /* ── COPY BUTTONS ────────────────────────────────────────── */
 document.addEventListener('click',e=>{
@@ -3568,7 +3625,12 @@ function openModal(id){
 }
 function closeModal(){modalOverlay.classList.remove('open')}
 function handleModalClick(e){if(e.target===modalOverlay)closeModal()}
+window.openModal=openModal;
+window.closeModal=closeModal;
+window.handleModalClick=handleModalClick;
 document.addEventListener('click',e=>{
+  const modalClose=e.target.closest('.modal-close');
+  if(modalClose){closeModal();return;}
   const btn=e.target.closest('.learn-more-btn');
   if(btn){openModal(btn.dataset.modal);return;}
 });
@@ -3690,16 +3752,44 @@ function selectKnowledgeCheck(opt){
     fb.className='kc-feedback show '+(idx===correct?'good':'bad');
   }
 }
-syncUI();
-renderTimer();
-renderSession();
-startTimer();
-initStoryQuizzes();
-/* ── LESSON HEADER WATERMARK NUMBERS ─────────────────────────── */
-document.querySelectorAll('.lh-num').forEach(el=>{
-  const band=el.closest('.lesson-header-band');
-  if(band)band.setAttribute('data-lesson-num',el.textContent.trim());
-});
+function applyLessonHeaderNumbers(){
+  document.querySelectorAll('.lh-num').forEach(el=>{
+    const band=el.closest('.lesson-header-band');
+    if(band)band.setAttribute('data-lesson-num',el.textContent.trim());
+  });
+}
+
+function bindControls(){
+  document.querySelectorAll('.sb-item').forEach(item=>{
+    item.addEventListener('click',()=>{
+      const idx=Number(item.dataset.idx);
+      if(Number.isFinite(idx))goTo(idx);
+    });
+  });
+
+  document.getElementById('sbCloseBtn')?.addEventListener('click',toggleSidebar);
+  document.getElementById('sbBackdrop')?.addEventListener('click',closeSidebar);
+  document.getElementById('tbToggleBtn')?.addEventListener('click',toggleSidebar);
+  document.getElementById('playBtn')?.addEventListener('click',toggleTimer);
+  document.getElementById('resetTimerBtn')?.addEventListener('click',()=>resetTimer());
+  document.getElementById('themeToggleBtn')?.addEventListener('click',toggleTheme);
+  document.getElementById('prevBtn')?.addEventListener('click',()=>go(-1));
+  document.getElementById('nextBtn')?.addEventListener('click',()=>go(1));
+  modalOverlay?.addEventListener('click',handleModalClick);
+}
+
+async function initApp(){
+  await loadLessonsIfNeeded();
+  bindControls();
+  syncUI();
+  renderTimer();
+  renderSession();
+  startTimer();
+  initStoryQuizzes();
+  applyLessonHeaderNumbers();
+}
+
+initApp().catch(error=>console.error(error));
 </script>
 </body>
 </html>

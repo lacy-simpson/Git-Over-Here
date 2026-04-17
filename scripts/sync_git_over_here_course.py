@@ -22,17 +22,32 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "Rise_Project"
+LESSONS_DIR = ROOT / "lessons"
 
 FINAL_HTML = OUTPUT_DIR / "index.html"
-SOURCE_HTML = ROOT / "main_index.html"
+SOURCE_HTML = ROOT / "main_shell.html"
 SOURCE_CSS = ROOT / "styles.css"
 SOURCE_BOOT_JS = ROOT / "head-init.js"
 SOURCE_APP_JS = ROOT / "app.js"
 FINAL_ICONS_DIR = OUTPUT_DIR / "resource_icons"
 SOURCE_ICON_PREFIX = "./Rise_Project/resource_icons/"
 FINAL_ICON_PREFIX = "./resource_icons/"
+LESSON_MARKER_START = "      <!-- LESSONS START: generated from lessons/*.html -->"
+LESSON_MARKER_END = "      <!-- LESSONS END: generated from lessons/*.html -->"
+LESSON_START_PATTERN = re.compile(r'<div class="lesson(?: active)?" id="s\d+">')
+LESSON_SPECS = [
+    ("s1", "01-intro.html"),
+    ("s2", "02-core-concepts.html"),
+    ("s3", "03-local-repo.html"),
+    ("s4", "04-remote-repo.html"),
+    ("s5", "05-git-collaboration.html"),
+    ("s6", "06-boss-battle.html"),
+    ("s7", "07-useful-tips-best-practices.html"),
+    ("s8", "08-recap.html"),
+]
 
 LEGACY_FILES = {
+    ROOT / "main_index.html": SOURCE_HTML,
     ROOT / "git_over_here.html": SOURCE_HTML,
     ROOT / "git_over_here_.html": SOURCE_HTML,
     ROOT / "git_over_here_course.source.html": SOURCE_HTML,
@@ -94,6 +109,14 @@ def ensure_output_dir() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 
+def ensure_lessons_dir() -> None:
+    LESSONS_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def lesson_paths() -> list[Path]:
+    return [LESSONS_DIR / filename for _, filename in LESSON_SPECS]
+
+
 def migrate_legacy_final_html() -> None:
     ensure_output_dir()
 
@@ -147,6 +170,75 @@ def normalize_icon_paths_for_final_html(text: str) -> str:
     updated = updated.replace(SOURCE_ICON_PREFIX, FINAL_ICON_PREFIX)
     updated = updated.replace("./icons/", FINAL_ICON_PREFIX)
     return updated
+
+
+def extract_lesson_blocks(text: str) -> list[str]:
+    starts = [match.start() for match in LESSON_START_PATTERN.finditer(text)]
+    if len(starts) != len(LESSON_SPECS):
+        raise ValueError(
+            f"Expected {len(LESSON_SPECS)} lessons in {SOURCE_HTML.name}, found {len(starts)}."
+        )
+
+    modal_defs_start = text.find('<div id="modal-defs" hidden>')
+    if modal_defs_start == -1:
+        raise ValueError("Could not find the modal definitions block after lessons.")
+
+    bounds = starts[1:] + [modal_defs_start]
+    return [text[start:end].rstrip() for start, end in zip(starts, bounds)]
+
+
+def build_lessons_markup() -> str:
+    parts = [read_text(path).rstrip() for path in lesson_paths()]
+    return "\n\n".join(parts) + "\n"
+
+
+def marker_only_block() -> str:
+    return LESSON_MARKER_START + "\n" + LESSON_MARKER_END
+
+
+def replace_between_markers(text: str, start_marker: str, end_marker: str, replacement: str) -> str:
+    start = text.find(start_marker)
+    end = text.find(end_marker)
+    if start == -1 or end == -1 or end < start:
+        raise ValueError(
+            f"Could not find lesson markers in {SOURCE_HTML.name}. "
+            "Try running the script with --bootstrap."
+        )
+
+    content_start = start + len(start_marker)
+    return text[:content_start] + "\n" + replacement + text[end:]
+
+
+def bootstrap_lessons_from_source_html(force: bool = False) -> None:
+    if not SOURCE_HTML.exists():
+        raise FileNotFoundError(f"Missing source HTML to bootstrap lessons from: {SOURCE_HTML}")
+
+    ensure_lessons_dir()
+    contents = read_text(SOURCE_HTML)
+    lesson_blocks = extract_lesson_blocks(contents)
+
+    for lesson_block, path in zip(lesson_blocks, lesson_paths()):
+        if force or not path.exists():
+            write_text(path, lesson_block + "\n")
+
+    marker_block = marker_only_block()
+
+    first_lesson_start = contents.find(lesson_blocks[0])
+    last_lesson_end = contents.find('<div id="modal-defs" hidden>')
+    if first_lesson_start == -1 or last_lesson_end == -1:
+        raise ValueError("Could not replace lesson blocks with markers in source HTML.")
+
+    updated = contents[:first_lesson_start] + marker_block + "\n" + contents[last_lesson_end:]
+    if updated != contents:
+        write_text(SOURCE_HTML, updated)
+        print(f"Split lessons out of {SOURCE_HTML.name}")
+
+
+def build_source_html_with_lessons() -> str:
+    ensure_lessons_dir()
+    contents = read_text(SOURCE_HTML)
+    lessons_markup = build_lessons_markup()
+    return replace_between_markers(contents, LESSON_MARKER_START, LESSON_MARKER_END, lessons_markup)
 
 
 def normalize_source_html_asset_references() -> None:
@@ -234,6 +326,7 @@ def validate_sources_exist() -> None:
         for path in (SOURCE_HTML, SOURCE_CSS, SOURCE_BOOT_JS, SOURCE_APP_JS)
         if not path.exists()
     ]
+    missing.extend(path.relative_to(ROOT).as_posix() for path in lesson_paths() if not path.exists())
     if missing:
         raise FileNotFoundError(
             "Missing modular source files: " + ", ".join(missing)
@@ -244,17 +337,17 @@ def inline_source_assets(source_html: str, css: str, boot_js: str, app_js: str) 
     built = source_html
 
     built, boot_count = BOOT_SCRIPT_TAG_PATTERN.subn(
-        "<script>\n" + boot_js.rstrip() + "\n</script>",
+        lambda _: "<script>\n" + boot_js.rstrip() + "\n</script>",
         built,
         count=1,
     )
     built, css_count = CSS_LINK_TAG_PATTERN.subn(
-        "<style>\n" + css.rstrip() + "\n</style>",
+        lambda _: "<style>\n" + css.rstrip() + "\n</style>",
         built,
         count=1,
     )
     built, app_count = APP_SCRIPT_TAG_PATTERN.subn(
-        "<script>\n" + app_js.rstrip() + "\n</script>",
+        lambda _: "<script>\n" + app_js.rstrip() + "\n</script>",
         built,
         count=1,
     )
@@ -272,7 +365,7 @@ def build_final_html() -> None:
     ensure_output_dir()
     validate_sources_exist()
     built = inline_source_assets(
-        normalize_icon_paths_for_final_html(read_text(SOURCE_HTML)),
+        normalize_icon_paths_for_final_html(build_source_html_with_lessons()),
         read_text(SOURCE_CSS),
         read_text(SOURCE_BOOT_JS),
         read_text(SOURCE_APP_JS),
@@ -290,10 +383,15 @@ def main() -> int:
     should_bootstrap = args.bootstrap or not all(
         path.exists() for path in (SOURCE_HTML, SOURCE_CSS, SOURCE_BOOT_JS, SOURCE_APP_JS)
     )
+    lesson_files_missing = not all(path.exists() for path in lesson_paths())
+    lessons_marked = SOURCE_HTML.exists() and LESSON_MARKER_START in read_text(SOURCE_HTML)
 
     if should_bootstrap:
         bootstrap_sources_from_final()
         print("Bootstrapped modular source files.")
+
+    if args.bootstrap or lesson_files_missing or not lessons_marked:
+        bootstrap_lessons_from_source_html(force=args.bootstrap)
 
     build_final_html()
     print(f"Rebuilt {FINAL_HTML.relative_to(ROOT)} from modular source files.")

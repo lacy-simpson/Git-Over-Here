@@ -1,0 +1,97 @@
+<div class="lesson" id="s4">
+        <div class="lesson-header-band">
+          <div class="lh-eyebrow"><span class="lh-num">04</span><span class="time-pill">⏱ 20 min</span></div>
+          <h1 class="lh-title">Git - Remote Repo</h1>
+          <p class="lh-lead">Now take that local repository and connect it to GitHub so you can push your work up and pull changes down.</p>
+        </div>
+        <div class="lesson-body">
+          <div class="lesson-preview">
+            <span class="lp-label">What We'll Cover</span>
+            <ul class="lp-list">
+              <li>Create a new repository in GitHub</li>
+              <li>Connect your local repo to that remote</li>
+              <li>Push your local commits to GitHub</li>
+              <li>Pull and interpret the "up to date" result</li>
+            </ul>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Step 1 — Create the Remote Repo in GitHub</h2>
+            <ol style="padding-left:16px;font-size:.86rem;color:var(--muted);display:grid;gap:6px;margin:0">
+                <li>Go to GitHub and click <strong style="color:var(--ink-strong)">New repository</strong></li>
+                <li>Give the repo a clear name</li>
+                <li>Set visibility appropriately for the workshop or project</li>
+                <li><strong style="color:var(--ink-strong)">Leave README, .gitignore, and license unchecked</strong> because your local project already exists</li>
+                <li>Create the repository and keep the page open</li>
+              </ol>
+              <div class="callout warn" style="margin-top:12px">
+                <span class="callout-icon">🌐</span>
+                <div class="callout-body"><strong>Pay attention to visibility when creating a new GitHub</strong>Public repositories can be viewed by anyone on the internet. That means code, prompts, notes, commit history, and anything you push may be exposed beyond your team. If the work is not clearly safe to share, do not use a public repo.</div>
+              </div>
+              <div class="callout tip" style="margin-top:12px">
+                <span class="callout-icon">💡</span>
+                <div class="callout-body"><strong>Why leave the repo empty?</strong>If GitHub adds starter files and your local project already has its own first commit, you create unnecessary extra history right away.</div>
+              </div>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Step 2 — Connect Local to Remote</h2>
+            <p style="font-size:.86rem;color:var(--muted);margin-bottom:9px">GitHub will show you commands for an existing repository. That is the path we want here.</p>
+              <div class="code-block">
+                <div class="code-bar"><span class="code-lang">Terminal</span><button class="copy-btn" data-copy="git remote add origin https://github.com/your-org/your-repo.git&#10;git branch -M main&#10;git remote -v"><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg>Copy</button></div>
+                <div class="code-body"><code>git remote add origin https://github.com/your-org/your-repo.git
+git branch -M main
+git remote -v</code></div>
+                <div class="code-output"><code># origin  https://github.com/your-org/your-repo.git (fetch)
+# origin  https://github.com/your-org/your-repo.git (push)</code></div>
+              </div>
+              <div class="callout state-check" style="margin-top:10px">
+                <span class="callout-icon">✓</span>
+                <div class="callout-body"><strong>State Check</strong> — <code class="inline-code">git remote -v</code> shows <code class="inline-code">origin</code> for fetch and push. Your local repo now knows where GitHub lives.</div>
+              </div>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Step 3 — Push Your Changes</h2>
+            <div class="code-block">
+                <div class="code-bar"><span class="code-lang">Terminal</span><button class="copy-btn" data-copy="git push -u origin main"><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg>Copy</button></div>
+                <div class="code-body"><code>git push -u origin main</code></div>
+              </div>
+              <p style="font-size:.84rem;color:var(--muted);margin-top:10px;line-height:1.6"><code class="inline-code">-u</code> sets the upstream relationship, which means later you can usually just run <code class="inline-code">git push</code> without repeating the branch name.</p>
+              <details class="reveal" style="margin-top:10px">
+                <summary>Authenticate with GitHub if the push prompts you</summary>
+                <div class="reveal-body">
+                  <div style="display:grid;gap:8px">
+                    <div style="padding:14px;background:var(--teal-soft);border:1px solid var(--teal-mid);border-radius:var(--r-sm)">
+                      <strong style="font-size:.83rem;color:var(--teal);display:block;margin-bottom:6px">Option A — Personal Access Token (PAT) — Recommended for this workshop</strong>
+                      <ol style="padding-left:16px;display:grid;gap:4px;font-size:.81rem;color:var(--muted);margin:0">
+                        <li>Go to GitHub → Settings → Developer settings → Personal access tokens</li>
+                        <li>Generate a token with <strong style="color:var(--ink-strong)">repo</strong> access</li>
+                        <li>When Git asks for a password during push, paste the token instead</li>
+                      </ol>
+                    </div>
+                    <div style="padding:14px;background:var(--surface-2);border:1px solid var(--line-hi);border-radius:var(--r-sm)">
+                      <strong style="font-size:.83rem;color:var(--ink-strong);display:block;margin-bottom:4px">Option B — SSH key</strong>
+                      <span style="font-size:.8rem;color:var(--muted)">Use SSH if you work in GitHub regularly and want to avoid repeated prompts. <button class="learn-more-btn" data-modal="ssh">SSH vs. PAT</button></span>
+                    </div>
+                  </div>
+                </div>
+              </details>
+              <div class="callout state-check" style="margin-top:10px">
+                <span class="callout-icon">✓</span>
+                <div class="callout-body"><strong>State Check</strong> — Refresh the GitHub repo page. You should now see your local files in the remote repository.</div>
+              </div>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Step 4 — Pull the Latest Changes</h2>
+              <div class="code-block">
+                <div class="code-bar"><span class="code-lang">Terminal</span><button class="copy-btn" data-copy="git pull origin main"><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg>Copy</button></div>
+                <div class="code-body"><code>git pull origin main</code></div>
+                <div class="code-output"><code># From https://github.com/your-org/your-repo
+# Already up to date.</code></div>
+              </div>
+              <p style="font-size:.85rem;color:var(--muted);margin-top:10px;line-height:1.6">That message is expected in this lesson. It means your local branch already matches the remote. Later, when teammates change the repo, this is how you bring their updates down.</p>
+          </div>
+          <div class="key-takeaway" style="margin-top:40px">
+            <span class="kt-label">Key Takeaway</span>
+            <p class="kt-text">A remote repository is just the shared copy of your local history. First you connect it with <code class="inline-code">git remote add origin</code>, then you publish with <code class="inline-code">git push</code>, and later you stay in sync with <code class="inline-code">git pull</code>.</p>
+          </div>
+        </div>
+      </div>

@@ -1,0 +1,152 @@
+<div class="lesson" id="s5">
+        <div class="lesson-header-band">
+          <div class="lh-eyebrow"><span class="lh-num">05</span><span class="time-pill">⏱ 12 min</span></div>
+          <h1 class="lh-title">Git Collaboration</h1>
+          <p class="lh-lead">This is where branches, pull requests, review, merge, and merge conflicts come together as a team workflow.</p>
+        </div>
+        <div class="lesson-body">
+          <div class="lesson-preview">
+            <span class="lp-label">What We'll Cover</span>
+            <ul class="lp-list">
+              <li>What a pull request is and why teams use them</li>
+              <li>How to open a pull request from your branch</li>
+              <li>What happens when the PR is approved and merged</li>
+              <li>What a merge conflict looks like</li>
+            </ul>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Why Collaboration Starts With Branches</h2>
+            <p style="font-size:.92rem;line-height:1.68;color:var(--muted);margin-bottom:14px">Branches are still the foundation here. Instead of changing <code class="inline-code">main</code> directly, each person works in their own branch, then uses a pull request to propose those changes for review.</p>
+              <ul class="check-list">
+                <li>Work stays isolated until it is ready</li>
+                <li>Review happens before main changes</li>
+                <li>It is easier to understand who changed what</li>
+                <li>Bad changes are easier to stop or roll back</li>
+              </ul>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">What Is a Pull Request?</h2>
+            <p style="font-size:.92rem;line-height:1.68;color:var(--muted);margin-bottom:14px">A <strong style="color:var(--ink-strong)">Pull Request (PR)</strong> is a formal request to merge your branch into another branch, usually <code class="inline-code">main</code>. It creates a space for review before the shared version changes.</p>
+              <ul class="check-list">
+                <li>Review code changes before they hit main</li>
+                <li>Leave comments and suggestions</li>
+                <li>Approve or request changes</li>
+                <li>Merge only after the change is understood</li>
+              </ul>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Opening a Pull Request</h2>
+            <div class="stepper">
+              <div class="st-step"><div class="st-track"><div class="st-dot">1</div><div class="st-line"></div></div><div class="st-body"><h3>Push your branch</h3><div class="code-block" style="margin-top:6px"><div class="code-bar"><span class="code-lang">Terminal</span><button class="copy-btn" data-copy="git push origin your-branch-name"><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg>Copy</button></div><div class="code-body"><code>git push origin your-branch-name</code></div></div></div></div>
+              <div class="st-step"><div class="st-track"><div class="st-dot">2</div><div class="st-line"></div></div><div class="st-body"><h3>Open the repo on GitHub</h3><p class="st-desc">GitHub often shows a banner for your recently pushed branch. If not, go to <strong>Pull requests</strong> → <strong>New pull request</strong>.</p></div></div>
+              <div class="st-step"><div class="st-track"><div class="st-dot">3</div><div class="st-line"></div></div><div class="st-body"><h3>Set base and compare</h3><p class="st-desc"><strong style="color:var(--ink-strong)">Base</strong> is usually <code class="inline-code">main</code>. <strong style="color:var(--ink-strong)">Compare</strong> is your branch.</p></div></div>
+              <div class="st-step"><div class="st-track"><div class="st-dot">4</div><div class="st-line"></div></div><div class="st-body"><h3>Write a useful PR title and description</h3><p class="st-desc">Your reviewer should understand what changed and why without opening every file.</p></div></div>
+              <div class="st-step"><div class="st-track"><div class="st-dot">5</div><div class="st-line"></div></div><div class="st-body"><h3>Create the PR</h3><p class="st-desc">Submit it for review and wait for comments, approval, or requested changes.</p></div></div>
+            </div>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">After the Pull Request</h2>
+            <ul class="step-list">
+                <li class="step"><span class="step-n teal">1</span><div><strong>Reviewer leaves feedback</strong><span>They may approve, ask questions, or request changes.</span></div></li>
+                <li class="step"><span class="step-n teal">2</span><div><strong>You update the branch if needed</strong><span>Make changes, commit them, and push again. The PR updates automatically.</span></div></li>
+                <li class="step"><span class="step-n teal">3</span><div><strong>The PR gets merged</strong><span>Once approved, your branch is merged into main and becomes part of the shared version.</span></div></li>
+              </ul>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Merging the Branch</h2>
+            <p style="font-size:.88rem;color:var(--muted);line-height:1.65;margin-bottom:12px">When the PR is approved, GitHub merges the branch into <code class="inline-code">main</code>. After that, pull the latest <code class="inline-code">main</code> locally so your machine matches the shared repo again.</p>
+              <div class="code-block">
+                <div class="code-bar"><span class="code-lang">Terminal</span><button class="copy-btn" data-copy="git checkout main&#10;git pull origin main"><svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4v8h8V4H4zm-1-1h10v10H3V3zM1 1h10v1H2v9H1V1z"/></svg>Copy</button></div>
+                <div class="code-body"><code>git checkout main
+git pull origin main</code></div>
+              </div>
+              <div class="callout tip" style="margin-top:10px">
+                <span class="callout-icon">🔁</span>
+                <div class="callout-body"><strong>What learners should notice</strong> — the changes from the merged branch now appear on <code class="inline-code">main</code>. That is the full collaboration loop working end to end.</div>
+              </div>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Merge Conflicts — What They Look Like</h2>
+            <p style="font-size:.89rem;color:var(--muted);line-height:1.65;margin-bottom:16px">A <strong style="color:var(--ink-strong)">merge conflict</strong> happens when two branches changed the same line in the same file. You are not expected to resolve one live today, but you should recognize the markers.</p>
+            <div class="branch-compare">
+              <div class="branch-side">
+                <span class="branch-side-label branch-side-label--bad">What Git shows in the file</span>
+                <div class="code-block">
+                  <div class="code-body"><code style="font-size:.8rem;line-height:1.9">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+prompt: "Summarize top 3 case trends"
+=======
+prompt: "Identify top 5 trends and root causes"
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; teammate/improve-skill-prompt</code></div>
+                </div>
+                <p style="font-size:.78rem;color:var(--muted);margin-top:8px;line-height:1.5">Your version is above the divider. The teammate version is below. Git stopped and needs a human decision.</p>
+              </div>
+              <div class="branch-side">
+                <span class="branch-side-label branch-side-label--good">How to resolve</span>
+                <ul class="step-list">
+                  <li class="step"><span class="step-n" style="width:26px;height:26px;font-size:.7rem">1</span><div><strong>Open the file</strong><span>Find the conflict markers and decide what final version to keep.</span></div></li>
+                  <li class="step"><span class="step-n" style="width:26px;height:26px;font-size:.7rem">2</span><div><strong>Delete the markers</strong><span>Keep only the content you want in the final file.</span></div></li>
+                  <li class="step"><span class="step-n" style="width:26px;height:26px;font-size:.7rem">3</span><div><strong>Stage and commit again</strong><span>Git then records the resolved version.</span></div></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="ls">
+            <h2 class="ls-title">Practice Check</h2>
+            <div class="story-quiz" data-story-quiz>
+              <div class="story-quiz-actions"><button type="button" class="nav-btn story-reset">Restart</button></div>
+              <span class="story-kicker">Practice Check</span>
+              <p class="story-lead">You and a teammate are both improving the same shared skill. Work through how collaboration should flow once branches and GitHub are in play.</p>
+              <div class="story-progress"><span>Your Collaboration Scenario</span><div class="story-progress-side"><strong>Question <span data-story-current>1</span> of <span data-story-total>4</span></strong></div></div>
+              <div class="story-step active">
+                <div class="kc-q">You finished your work on a branch. What should happen before anything reaches <code class="inline-code">main</code>?</div>
+                <ul class="kc-opts" data-correct="0">
+                  <li class="kc-opt story-opt" data-idx="0" tabindex="0" data-feedback="Correct. Open a pull request so someone can review the change before it reaches main.">Open a pull request for review</li>
+                  <li class="kc-opt story-opt" data-idx="1" tabindex="0" data-feedback="That skips review and defeats the purpose of the collaboration workflow.">Merge directly into main</li>
+                  <li class="kc-opt story-opt" data-idx="2" tabindex="0" data-feedback="Deleting the branch too early removes the workspace before review is complete.">Delete the branch immediately</li>
+                  <li class="kc-opt story-opt" data-idx="3" tabindex="0" data-feedback="A commit message helps, but it is not the review step.">Just rewrite the commit message</li>
+                </ul>
+                <div class="kc-feedback" aria-live="polite"></div>
+                <div class="story-nav-row"><button type="button" class="nav-btn story-back" disabled>← Back</button><button type="button" class="nav-btn primary story-next" disabled>Next →</button></div>
+              </div>
+              <div class="story-step">
+                <div class="kc-q">GitHub asks you to choose base and compare branches. What does that mean?</div>
+                <ul class="kc-opts" data-correct="1">
+                  <li class="kc-opt story-opt" data-idx="0" tabindex="0" data-feedback="Not quite. Base and compare are not local-vs-remote labels.">Base is local and compare is remote</li>
+                  <li class="kc-opt story-opt" data-idx="1" tabindex="0" data-feedback="Correct. Base is where the changes will go, usually main. Compare is the branch bringing the changes in.">Base is the destination branch; compare is your source branch</li>
+                  <li class="kc-opt story-opt" data-idx="2" tabindex="0" data-feedback="No. The two branches should be different, or there would be nothing to review.">They should both be the same branch</li>
+                  <li class="kc-opt story-opt" data-idx="3" tabindex="0" data-feedback="No. That is not how GitHub uses the labels.">Base means the newest branch and compare means the oldest branch</li>
+                </ul>
+                <div class="kc-feedback" aria-live="polite"></div>
+                <div class="story-nav-row"><button type="button" class="nav-btn story-back">← Back</button><button type="button" class="nav-btn primary story-next" disabled>Next →</button></div>
+              </div>
+              <div class="story-step">
+                <div class="kc-q">Your PR gets approved and merged. What is the next best local step?</div>
+                <ul class="kc-opts" data-correct="2">
+                  <li class="kc-opt story-opt" data-idx="0" tabindex="0" data-feedback="Not quite. You first want your local main branch to match the shared version again."><code class="inline-code">git push origin main</code></li>
+                  <li class="kc-opt story-opt" data-idx="1" tabindex="0" data-feedback="Deleting a branch may happen later, but it is not the most important next local sync step."><code class="inline-code">git branch -d your-branch</code></li>
+                  <li class="kc-opt story-opt" data-idx="2" tabindex="0" data-feedback="Correct. Switch to main and pull so your local repo reflects the merged result."><code class="inline-code">git checkout main</code> then <code class="inline-code">git pull origin main</code></li>
+                  <li class="kc-opt story-opt" data-idx="3" tabindex="0" data-feedback="Opening another PR is not the next step after a merge.">Open a second PR immediately</li>
+                </ul>
+                <div class="kc-feedback" aria-live="polite"></div>
+                <div class="story-nav-row"><button type="button" class="nav-btn story-back">← Back</button><button type="button" class="nav-btn primary story-next" disabled>Next →</button></div>
+              </div>
+              <div class="story-step">
+                <div class="kc-q">Git stops a merge because two people changed the same line differently. What happened?</div>
+                <ul class="kc-opts" data-correct="3">
+                  <li class="kc-opt story-opt" data-idx="0" tabindex="0" data-feedback="A pull request is the review workflow, not the warning Git is giving here.">They opened a pull request</li>
+                  <li class="kc-opt story-opt" data-idx="1" tabindex="0" data-feedback="The number of commits is not the issue.">They created too many commits</li>
+                  <li class="kc-opt story-opt" data-idx="2" tabindex="0" data-feedback="The branch name is unrelated.">They chose the wrong branch name</li>
+                  <li class="kc-opt story-opt" data-idx="3" tabindex="0" data-feedback="Correct. Git found overlapping edits and needs a human to resolve the conflict.">They hit a merge conflict</li>
+                </ul>
+                <div class="kc-feedback" aria-live="polite"></div>
+                <div class="story-nav-row"><button type="button" class="nav-btn story-back">← Back</button><button type="button" class="nav-btn primary story-next" disabled>Finish →</button></div>
+              </div>
+              <div class="story-complete"><strong>Practice complete</strong><p>You followed the collaboration path: branch work goes to a PR, the PR gets reviewed, the branch merges into main, and then your local repo catches back up with a pull.</p></div>
+            </div>
+          </div>
+          <div class="key-takeaway" style="margin-top:40px">
+            <span class="kt-label">Key Takeaway</span>
+            <p class="kt-text">Collaboration works because branches keep work isolated and pull requests create a review checkpoint before main changes. Merging and pulling are what bring everyone back to the same shared version.</p>
+          </div>
+        </div>
+      </div>

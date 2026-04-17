@@ -9,8 +9,49 @@ const SECTIONS=[
   {title:"Recap",min:12},
 ];
 const LESSON_ORDER=['s1','s2','s3','s4','s5','s7','s6','s8'];
+const LESSON_FILES=[
+  'lessons/01-intro.html',
+  'lessons/02-core-concepts.html',
+  'lessons/03-local-repo.html',
+  'lessons/04-remote-repo.html',
+  'lessons/05-git-collaboration.html',
+  'lessons/06-boss-battle.html',
+  'lessons/07-useful-tips-best-practices.html',
+  'lessons/08-recap.html',
+];
 const WORKSHOP_TOTAL_LABEL='~90 min';
 let cur=0,secs=SECTIONS[0].min*60,running=false,tInterval=null,sessionElapsed=0;
+
+async function loadLessonsIfNeeded(){
+  if(document.querySelector('.lesson'))return;
+
+  const modalDefs=document.getElementById('modal-defs');
+  const viewport=document.getElementById('viewport');
+  if(!viewport)return;
+
+  try{
+    const lessons=await Promise.all(
+      LESSON_FILES.map(path=>
+        fetch(path).then(res=>{
+          if(!res.ok)throw new Error(`Failed to load ${path}`);
+          return res.text();
+        })
+      )
+    );
+    const markup=lessons.join('\n\n');
+    if(modalDefs){
+      modalDefs.insertAdjacentHTML('beforebegin',markup+'\n');
+    }else{
+      viewport.insertAdjacentHTML('beforeend',markup+'\n');
+    }
+  }catch(error){
+    viewport.insertAdjacentHTML(
+      'afterbegin',
+      '<div class="callout warn" style="margin:24px"><span class="callout-icon">!</span><div class="callout-body"><strong>Lesson content failed to load.</strong> Start the local server from the project root with <code>python3 -m http.server 8000</code>, then open <code>http://localhost:8000/main_shell.html</code> in your browser.</div></div>'
+    );
+    throw error;
+  }
+}
 
 function goTo(idx){
   if(idx<0||idx>=SECTIONS.length)return;
@@ -23,6 +64,8 @@ function goTo(idx){
   if(window.innerWidth<900)closeSidebar();
 }
 function go(dir){goTo(cur+dir)}
+window.goTo=goTo;
+window.go=go;
 function syncUI(){
   const n=SECTIONS.length;
   document.getElementById('pBar').style.width=((cur+1)/n*100)+'%';
@@ -77,6 +120,8 @@ function toggleTimer(){
     startTimer();
   }
 }
+window.toggleTimer=toggleTimer;
+window.resetTimer=resetTimer;
 function renderTimer(){
   const m=Math.floor(secs/60),s=secs%60;
   const el=document.getElementById('timerEl');
@@ -101,6 +146,9 @@ function toggleTheme(){
   document.documentElement.setAttribute('data-theme',t);
   localStorage.setItem('git-guide-theme',t);
 }
+window.toggleSidebar=toggleSidebar;
+window.closeSidebar=closeSidebar;
+window.toggleTheme=toggleTheme;
 
 /* ── COPY BUTTONS ────────────────────────────────────────── */
 document.addEventListener('click',e=>{
@@ -126,7 +174,12 @@ function openModal(id){
 }
 function closeModal(){modalOverlay.classList.remove('open')}
 function handleModalClick(e){if(e.target===modalOverlay)closeModal()}
+window.openModal=openModal;
+window.closeModal=closeModal;
+window.handleModalClick=handleModalClick;
 document.addEventListener('click',e=>{
+  const modalClose=e.target.closest('.modal-close');
+  if(modalClose){closeModal();return;}
   const btn=e.target.closest('.learn-more-btn');
   if(btn){openModal(btn.dataset.modal);return;}
 });
@@ -248,13 +301,41 @@ function selectKnowledgeCheck(opt){
     fb.className='kc-feedback show '+(idx===correct?'good':'bad');
   }
 }
-syncUI();
-renderTimer();
-renderSession();
-startTimer();
-initStoryQuizzes();
-/* ── LESSON HEADER WATERMARK NUMBERS ─────────────────────────── */
-document.querySelectorAll('.lh-num').forEach(el=>{
-  const band=el.closest('.lesson-header-band');
-  if(band)band.setAttribute('data-lesson-num',el.textContent.trim());
-});
+function applyLessonHeaderNumbers(){
+  document.querySelectorAll('.lh-num').forEach(el=>{
+    const band=el.closest('.lesson-header-band');
+    if(band)band.setAttribute('data-lesson-num',el.textContent.trim());
+  });
+}
+
+function bindControls(){
+  document.querySelectorAll('.sb-item').forEach(item=>{
+    item.addEventListener('click',()=>{
+      const idx=Number(item.dataset.idx);
+      if(Number.isFinite(idx))goTo(idx);
+    });
+  });
+
+  document.getElementById('sbCloseBtn')?.addEventListener('click',toggleSidebar);
+  document.getElementById('sbBackdrop')?.addEventListener('click',closeSidebar);
+  document.getElementById('tbToggleBtn')?.addEventListener('click',toggleSidebar);
+  document.getElementById('playBtn')?.addEventListener('click',toggleTimer);
+  document.getElementById('resetTimerBtn')?.addEventListener('click',()=>resetTimer());
+  document.getElementById('themeToggleBtn')?.addEventListener('click',toggleTheme);
+  document.getElementById('prevBtn')?.addEventListener('click',()=>go(-1));
+  document.getElementById('nextBtn')?.addEventListener('click',()=>go(1));
+  modalOverlay?.addEventListener('click',handleModalClick);
+}
+
+async function initApp(){
+  await loadLessonsIfNeeded();
+  bindControls();
+  syncUI();
+  renderTimer();
+  renderSession();
+  startTimer();
+  initStoryQuizzes();
+  applyLessonHeaderNumbers();
+}
+
+initApp().catch(error=>console.error(error));

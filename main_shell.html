@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Git Over Here — Session Guide v3</title>
+<script src="./head-init.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div class="app" id="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-head">
+      <div class="sb-brand">
+        <div class="sb-mark"><div class="sb-mark-dots"><div class="sb-mark-dot t"></div><div class="sb-mark-dot a"></div><div class="sb-mark-dot l"></div></div></div>
+        <div><div class="sb-name">Git Over Here</div><div class="sb-sub">GPS AI Practice Lab</div></div>
+      </div>
+      <button class="sb-close" id="sbCloseBtn" title="Close menu"><svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M.7.7 9.3 9.3M9.3.7.7 9.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+    </div>
+    <nav class="sb-nav" id="sbNav">
+      <button class="sb-item active" data-idx="0"><span class="sb-num">01</span><div class="sb-item-body"><span class="sb-item-title">Intro</span><span class="sb-item-meta">5 min · Welcome</span></div></button>
+      <button class="sb-item" data-idx="1"><span class="sb-num">02</span><div class="sb-item-body"><span class="sb-item-title">Core Concepts</span><span class="sb-item-meta">12 min · 4 Stages, 3 Commands</span></div></button>
+      <button class="sb-item" data-idx="2"><span class="sb-num">03</span><div class="sb-item-body"><span class="sb-item-title">Git - Local Repo</span><span class="sb-item-meta">15 min · Local setup &amp; branching</span></div></button>
+      <button class="sb-item" data-idx="3"><span class="sb-num">04</span><div class="sb-item-body"><span class="sb-item-title">Git - Remote Repo</span><span class="sb-item-meta">20 min · Connect, push, pull</span></div></button>
+      <button class="sb-item" data-idx="4"><span class="sb-num">05</span><div class="sb-item-body"><span class="sb-item-title">Git Collaboration</span><span class="sb-item-meta">12 min · PRs, merge, conflicts</span></div></button>
+      <button class="sb-item" data-idx="5"><span class="sb-num">06</span><div class="sb-item-body"><span class="sb-item-title">Boss Battle</span><span class="sb-item-meta">30 min · Add Your Card to the Team Page</span></div></button>
+      <button class="sb-item" data-idx="6"><span class="sb-num">07</span><div class="sb-item-body"><span class="sb-item-title">Useful Tips &amp; Best Practices</span><span class="sb-item-meta">10 min · Everyday commands</span></div></button>
+      <button class="sb-item" data-idx="7"><span class="sb-num">08</span><div class="sb-item-body"><span class="sb-item-title">Recap</span><span class="sb-item-meta">12 min · Recap</span></div></button>
+    </nav>
+    <div class="sb-foot"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3.5l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>~90 min · live workshop</div>
+  </aside>
+  <div class="sb-backdrop" id="sbBackdrop"></div>
+  <div class="main">
+    <header class="topbar">
+      <button class="tb-toggle" id="tbToggleBtn" title="Toggle navigation"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.5h14M1 8h14M1 13.5h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+      <div class="progress-rail"><div class="progress-bar" id="pBar" style="width:12.5%"></div></div>
+      <span class="tb-count" id="pCount">1 / 8</span>
+      <div class="tb-sep"></div>
+      <div class="timer">
+        <span class="timer-time" id="timerEl">10:00</span>
+        <button class="tcb play" id="playBtn" title="Play / Pause"><svg id="playIcon" width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.5l8 4.5-8 4.5V3.5z"/></svg></button>
+        <button class="tcb reset" id="resetTimerBtn" title="Reset timer"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg></button>
+      </div>
+      <div class="tb-session"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3.5l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span id="sessionEl">0:00 / ~90 min</span></div>
+      <button class="theme-btn" id="themeToggleBtn" title="Toggle theme"><svg id="themeIcon" width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/></svg></button>
+    </header>
+    <div class="content" id="viewport">
+      <!-- LESSONS INJECTED BELOW -->
+            <!-- LESSONS START: generated from lessons/*.html -->
+      <!-- LESSONS END: generated from lessons/*.html -->
+<div id="modal-defs" hidden>
+  <div id="modal-origin">
+    <div class="modal-title">What does "origin" mean?</div>
+    <div class="modal-body">
+      <p><strong>origin</strong> is just a nickname — the default name Git gives to the remote repository you cloned from. It is not a special command or a fixed rule.</p>
+      <p style="margin-top:10px">When you run <code>git clone https://github.com/org/repo.git</code>, Git automatically creates a remote named <code>origin</code> pointing to that URL. So when you later run <code>git push origin main</code>, you are saying: "push my commits to the remote called origin, onto the branch called main."</p>
+      <p style="margin-top:10px">You can see all your remotes and their URLs by running <code>git remote -v</code> in your terminal.</p>
+    </div>
+    <div class="modal-resources">
+      <span class="modal-res-label">Learn More</span>
+      <a href="https://git-scm.com/docs/git-remote" target="_blank" rel="noreferrer" class="modal-res-link">Git remote documentation →</a>
+      <a href="https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories" target="_blank" rel="noreferrer" class="modal-res-link">GitHub: About remote repositories →</a>
+    </div>
+  </div>
+  <div id="modal-cd">
+    <div class="modal-title">What does <code>cd</code> do?</div>
+    <div class="modal-body">
+      <p><strong>cd</strong> stands for "change directory." It moves your terminal into a folder — the same way double-clicking a folder in Finder or File Explorer opens it.</p>
+      <p style="margin-top:10px">Common uses:</p>
+      <ul style="margin-top:6px;padding-left:16px;display:grid;gap:4px;font-size:.84rem">
+        <li><code>cd my-folder</code> — move into a folder named "my-folder"</li>
+        <li><code>cd ..</code> — move up one level (to the parent folder)</li>
+        <li><code>cd ~</code> — jump back to your home directory</li>
+      </ul>
+      <p style="margin-top:10px">To see where you currently are, run <code>pwd</code> (Mac/Linux) or type <code>cd</code> with no arguments (Windows).</p>
+    </div>
+  </div>
+  <div id="modal-staging-why">
+    <div class="modal-title">Why does Git have a staging area?</div>
+    <div class="modal-body">
+      <p>Most save systems are all-or-nothing. Git's staging area gives you a "review queue" before you lock in a commit.</p>
+      <p style="margin-top:10px"><strong>Real scenario:</strong> You edited three files today — two are part of one bug fix, and one is an unrelated experiment. Without staging, you'd have to commit all three together, making your history hard to read.</p>
+      <p style="margin-top:10px">With staging, you <code>git add</code> the two related files, commit them as a clean, focused snapshot, then decide what to do with the third separately.</p>
+      <p style="margin-top:10px">Think of it like putting items in a cart before checkout — you can review and remove before finalizing.</p>
+    </div>
+    <div class="modal-resources">
+      <span class="modal-res-label">Learn More</span>
+      <a href="https://git-scm.com/about/staging-area" target="_blank" rel="noreferrer" class="modal-res-link">Git: About the staging area →</a>
+    </div>
+  </div>
+  <div id="modal-ssh">
+    <div class="modal-title">SSH Keys vs. Personal Access Tokens</div>
+    <div class="modal-body">
+      <p>Both methods authenticate you to GitHub — they're just different approaches with different tradeoffs.</p>
+      <p style="margin-top:10px"><strong>Personal Access Token (PAT):</strong> A long string you paste as your "password" when Git asks. Easy to set up in 2 minutes. You may need to re-enter it depending on your credential settings.</p>
+      <p style="margin-top:10px"><strong>SSH Key:</strong> A key pair generated on your machine. Once you add your public key to GitHub, Git never asks for credentials again. Takes ~5 minutes to set up but saves time long-term.</p>
+      <p style="margin-top:10px">For this workshop: PAT is faster. For regular daily use: SSH is smoother.</p>
+    </div>
+    <div class="modal-resources">
+      <span class="modal-res-label">Learn More</span>
+      <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh" target="_blank" rel="noreferrer" class="modal-res-link">GitHub: Connecting with SSH →</a>
+      <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token" target="_blank" rel="noreferrer" class="modal-res-link">GitHub: Creating a PAT →</a>
+    </div>
+  </div>
+  <div id="modal-gitswitch">
+    <div class="modal-title"><code>git switch</code> — the modern alternative</div>
+    <div class="modal-body">
+      <p>Modern Git (2.23+) introduced <code>git switch</code> as a cleaner, more focused alternative to <code>git checkout</code> for working with branches.</p>
+      <p style="margin-top:10px">They are equivalent:</p>
+      <ul style="margin-top:6px;padding-left:16px;display:grid;gap:4px;font-size:.84rem">
+        <li><code>git checkout -b feature/name</code> ≡ <code>git switch -c feature/name</code></li>
+        <li><code>git checkout main</code> ≡ <code>git switch main</code></li>
+      </ul>
+      <p style="margin-top:10px">This guide uses <code>git checkout</code> because it works in all Git versions. If you see <code>git switch</code> in other tutorials, it's doing the same thing.</p>
+    </div>
+  </div>
+  <div id="modal-gitignore">
+    <div class="modal-title">What is <code>.gitignore</code>?</div>
+    <div class="modal-body">
+      <p>A <code>.gitignore</code> file tells Git which files to never track — even if they exist in your project folder.</p>
+      <p style="margin-top:10px">Common entries: <code>.env</code> files with secrets, <code>node_modules/</code>, compiled output, OS junk like <code>.DS_Store</code>.</p>
+      <p style="margin-top:10px">Without it, <code>git add .</code> can accidentally stage things you never want in version control. It's one of the first files most developers add to a new project.</p>
+    </div>
+    <div class="modal-resources">
+      <span class="modal-res-label">Learn More</span>
+      <a href="https://git-scm.com/docs/gitignore" target="_blank" rel="noreferrer" class="modal-res-link">Git: gitignore documentation →</a>
+    </div>
+  </div>
+  <div id="modal-local-repo-basics">
+    <div class="modal-title">Working With a Local Repository</div>
+    <div class="modal-body">
+      <p>A local repository is the copy of your project that lives on your machine. This is where you initialize Git, inspect file changes, stage work, create commits, and create branches before anything is shared remotely.</p>
+      <p style="margin-top:10px">That means a lot of Git happens without the internet. You can make commits, inspect history, and organize work locally first, then connect the repository to GitHub later when you are ready to push.</p>
+      <p style="margin-top:10px">If the local workflow makes sense to you, the remote and collaboration workflow becomes much easier to understand.</p>
+    </div>
+    <div class="modal-resources">
+      <span class="modal-res-label">Learn More</span>
+      <a href="https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository" target="_blank" rel="noreferrer" class="modal-res-link">Git Book: Getting a Git Repository →</a>
+      <a href="https://git-scm.com/docs/gittutorial" target="_blank" rel="noreferrer" class="modal-res-link">Git official tutorial →</a>
+    </div>
+  </div>
+  <div id="modal-gps-learning-path">
+    <div class="modal-title">Where to Learn More About Source Control</div>
+    <div class="modal-body">
+      <p>If you want to build a stronger foundation in source control after this workshop, start in the <strong><a href="https://cloud.uipath.com/gpstools/apps_/default/run/production/fee0bce6-9eb7-4ffd-aa92-72fe9e2766e7/6e573f8c-e041-4d31-916d-2c26c91fb5fc/ID0c0d6df7b11e4d1c9fea3f32a0fcd457?el=VB&amp;uts=true" target="_blank" rel="noreferrer">GPS AI Learning Hub</a></strong>.</p>
+      <p style="margin-top:10px">The path to look for is:</p>
+      <p style="margin-top:10px"><code>GPS AI Learning Hub → AI Skill Domains → AI Builder</code></p>
+      <p style="margin-top:10px">That path is a good place to continue upskilling on Git and source control concepts beyond the practical overview covered in this course.</p>
+    </div>
+  </div>
+</div>
+
+<script src="./app.js"></script>
+</body>
+</html>
