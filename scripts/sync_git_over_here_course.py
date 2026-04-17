@@ -6,33 +6,47 @@ Usage:
 
 What it does:
   - If the modular source files do not exist yet, it bootstraps them from the
-    current single-file `git_over_here_course.html`.
-  - It then rebuilds `git_over_here_course.html` by inlining the modular HTML,
-    CSS, and JavaScript sources.
+    current single-file `index.html`.
+  - It then rebuilds `index.html` by inlining the modular HTML, CSS, and
+    JavaScript sources.
 """
 
 from __future__ import annotations
 
 import argparse
 import re
+import shutil
 import sys
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+OUTPUT_DIR = ROOT / "Rise_Project"
 
-FINAL_HTML = ROOT / "git_over_here_course.html"
-SOURCE_HTML = ROOT / "index.html"
+FINAL_HTML = OUTPUT_DIR / "index.html"
+SOURCE_HTML = ROOT / "git_over_here.html"
 SOURCE_CSS = ROOT / "styles.css"
 SOURCE_BOOT_JS = ROOT / "head-init.js"
 SOURCE_APP_JS = ROOT / "app.js"
+FINAL_ICONS_DIR = OUTPUT_DIR / "resource_icons"
+SOURCE_ICON_PREFIX = "./Rise_Project/resource_icons/"
+FINAL_ICON_PREFIX = "./resource_icons/"
 
 LEGACY_FILES = {
+    ROOT / "git_over_here_.html": SOURCE_HTML,
     ROOT / "git_over_here_course.source.html": SOURCE_HTML,
     ROOT / "git_over_here_course.css": SOURCE_CSS,
     ROOT / "git_over_here_course.boot.js": SOURCE_BOOT_JS,
     ROOT / "git_over_here_course.js": SOURCE_APP_JS,
 }
+LEGACY_FINAL_HTMLS = [
+    ROOT / "index.html",
+    ROOT / "git_over_here_course.html",
+]
+LEGACY_ICON_DIRS = [
+    ROOT / "icons",
+    OUTPUT_DIR / "icons",
+]
 
 
 def script_src_pattern(path: Path) -> re.Pattern[str]:
@@ -71,7 +85,28 @@ def read_text(path: Path) -> str:
 
 
 def write_text(path: Path, content: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content, encoding="utf-8")
+
+
+def ensure_output_dir() -> None:
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def migrate_legacy_final_html() -> None:
+    ensure_output_dir()
+
+    if FINAL_HTML.exists():
+        return
+
+    for legacy_path in LEGACY_FINAL_HTMLS:
+        if not legacy_path.exists():
+            continue
+        shutil.move(str(legacy_path), str(FINAL_HTML))
+        print(
+            f"Moved {legacy_path.relative_to(ROOT)} -> {FINAL_HTML.relative_to(ROOT)}"
+        )
+        return
 
 
 def migrate_legacy_sources() -> None:
@@ -82,12 +117,43 @@ def migrate_legacy_sources() -> None:
         print(f"Renamed {legacy_path.name} -> {new_path.name}")
 
 
+def migrate_legacy_icon_dir() -> None:
+    ensure_output_dir()
+
+    if FINAL_ICONS_DIR.exists():
+        return
+
+    for legacy_dir in LEGACY_ICON_DIRS:
+        if not legacy_dir.exists():
+            continue
+        shutil.move(str(legacy_dir), str(FINAL_ICONS_DIR))
+        print(
+            f"Moved {legacy_dir.relative_to(ROOT)} -> {FINAL_ICONS_DIR.relative_to(ROOT)}"
+        )
+        return
+
+
+def normalize_icon_paths_for_source_html(text: str) -> str:
+    updated = text
+    updated = updated.replace("./icons/", SOURCE_ICON_PREFIX)
+    updated = updated.replace("./resource_icons/", SOURCE_ICON_PREFIX)
+    updated = updated.replace(FINAL_ICON_PREFIX, SOURCE_ICON_PREFIX)
+    return updated
+
+
+def normalize_icon_paths_for_final_html(text: str) -> str:
+    updated = text
+    updated = updated.replace(SOURCE_ICON_PREFIX, FINAL_ICON_PREFIX)
+    updated = updated.replace("./icons/", FINAL_ICON_PREFIX)
+    return updated
+
+
 def normalize_source_html_asset_references() -> None:
     if not SOURCE_HTML.exists():
         return
 
     contents = read_text(SOURCE_HTML)
-    updated = contents
+    updated = normalize_icon_paths_for_source_html(contents)
 
     for legacy_path, new_path in LEGACY_FILES.items():
         updated = updated.replace(f'./{legacy_path.name}', f'./{new_path.name}')
@@ -150,7 +216,7 @@ def bootstrap_sources_from_final() -> None:
         + head_middle.lstrip("\n")
         + f'<link rel="stylesheet" href="./{SOURCE_CSS.name}">\n'
         + "</head>\n<body>\n"
-        + body_markup.lstrip("\n")
+        + normalize_icon_paths_for_source_html(body_markup.lstrip("\n"))
         + f'\n<script src="./{SOURCE_APP_JS.name}"></script>\n'
         + html_tail
     )
@@ -202,9 +268,10 @@ def inline_source_assets(source_html: str, css: str, boot_js: str, app_js: str) 
 
 
 def build_final_html() -> None:
+    ensure_output_dir()
     validate_sources_exist()
     built = inline_source_assets(
-        read_text(SOURCE_HTML),
+        normalize_icon_paths_for_final_html(read_text(SOURCE_HTML)),
         read_text(SOURCE_CSS),
         read_text(SOURCE_BOOT_JS),
         read_text(SOURCE_APP_JS),
@@ -214,6 +281,8 @@ def build_final_html() -> None:
 
 def main() -> int:
     args = parse_args()
+    migrate_legacy_final_html()
+    migrate_legacy_icon_dir()
     migrate_legacy_sources()
     normalize_source_html_asset_references()
 
@@ -226,7 +295,7 @@ def main() -> int:
         print("Bootstrapped modular source files.")
 
     build_final_html()
-    print(f"Rebuilt {FINAL_HTML.name} from modular source files.")
+    print(f"Rebuilt {FINAL_HTML.relative_to(ROOT)} from modular source files.")
     return 0
 
 
